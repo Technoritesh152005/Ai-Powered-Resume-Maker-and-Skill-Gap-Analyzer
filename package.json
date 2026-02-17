@@ -1,0 +1,26 @@
+{
+  "name": "resume-analyzer-backend",
+  "version": "1.0.0",
+  "description": "AI-powered resume analysis and career roadmap generator",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --watchAll --verbose",
+    "test:coverage": "jest --coverage",
+    "test:integration": "jest --testPathPattern=tests/integration",
+    "test:e2e": "jest --testPathPattern=tests/e2e",
+    "seed:job-roles": "node scripts/seed-job-roles.js",
+    "seed:resources": "node scripts/seed-resources.js",
+    "seed:all": "npm run seed:job-roles && npm run seed:resources",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.js\"",
+    "docker:dev": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": ["resume", "ai", "career", "analysis", "claude"],
+  "author": "Your Name",
+  "license": "MIT"
+}

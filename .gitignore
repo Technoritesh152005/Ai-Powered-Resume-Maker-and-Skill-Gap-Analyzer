@@ -1,0 +1,101 @@
+    # ========================
+# ENVIRONMENT & SECRETS
+# ========================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.staging
+*.env
+
+# ========================
+# NODE MODULES
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ========================
+# LOGS
+# ========================
+logs/
+*.log
+log/
+
+# ========================
+# FILE UPLOADS
+# ========================
+uploads/
+temp/
+tmp/
+
+# ========================
+# BUILD OUTPUT
+# ========================
+dist/
+build/
+out/
+.cache/
+
+# ========================
+# TESTING
+# ========================
+coverage/
+.nyc_output/
+test-results/
+
+# ========================
+# OS FILES
+# ========================
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ========================
+# IDE & EDITORS
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+
+# ========================
+# DOCKER
+# ========================
+docker-compose.override.yml
+
+# ========================
+# AWS
+# ========================
+.aws/
+*.pem
+*.key
+*.cert
+*.crt
+
+# ========================
+# DATABASE
+# ========================
+*.sqlite
+*.db
+*.sql
+dump.rdb
+
+# ========================
+# MISC SECRETS
+# ========================
+secrets/
+private/
+*.secret
+config/local.js
