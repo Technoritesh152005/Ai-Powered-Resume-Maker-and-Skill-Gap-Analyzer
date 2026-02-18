@@ -20,7 +20,18 @@
     "docker:down": "docker-compose down",
     "docker:logs": "docker-compose logs -f"
   },
-  "keywords": ["resume", "ai", "career", "analysis", "claude"],
+  "keywords": [
+    "resume",
+    "ai",
+    "career",
+    "analysis",
+    "claude"
+  ],
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "init": "^0.1.2",
+    "mammoth": "^1.11.0",
+    "pdf-parse": "^2.4.5"
+  }
 }
