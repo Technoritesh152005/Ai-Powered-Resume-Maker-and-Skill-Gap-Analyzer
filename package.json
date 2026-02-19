@@ -30,6 +30,7 @@
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.77.0",
     "init": "^0.1.2",
     "mammoth": "^1.11.0",
     "pdf-parse": "^2.4.5"
