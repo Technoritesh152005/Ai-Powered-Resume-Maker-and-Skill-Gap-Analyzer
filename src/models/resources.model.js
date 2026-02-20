@@ -4,6 +4,12 @@ import { RESOURCE_TYPES } from '../config/constant'
 const resourceSchema = new mongoose.Schema(
     {
         // 1
+        user: {
+            type: mongoose.Types.ObjectId,
+            ref: 'userModel',
+            required: true,
+            index: true,
+        },
         title: {
             type: String,
             required: true,
@@ -143,3 +149,5 @@ resourceSchema.statics.findBestResources = async function (skill,difficulty,opti
 
     
 }
+
+export const resourceModel = mongoose.model('resourceModel',resourceSchema)

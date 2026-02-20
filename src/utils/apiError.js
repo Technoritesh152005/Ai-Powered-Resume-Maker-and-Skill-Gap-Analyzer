@@ -15,5 +15,4 @@ class ApiError extends Error {
     }
   }
   
-const apiErrorInstance = new ApiError();
-export {apiErrorInstance}
+export {ApiError}

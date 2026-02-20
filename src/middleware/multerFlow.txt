@@ -1,0 +1,220 @@
+🔥 SCENARIO
+
+User sends request:
+
+POST /upload
+FormData:
+  resume → file.pdf
+  name → Ritesh
+
+Route:
+
+app.post("/upload", handleUpload(uploadResume), controller);
+🧠 STEP 1 — Express Receives Request
+
+Express creates:
+
+req
+res
+next
+
+Then it looks at route middleware chain:
+
+handleUpload(uploadResume)
+
+controller
+
+🧠 STEP 2 — handleUpload(uploadResume) Runs
+
+Important:
+
+When app started, this already happened:
+
+handleUpload(uploadResume)
+
+This returned a middleware:
+
+(req, res, next) => {
+   uploadFunction(req, res, callback)
+}
+
+So Express now calls that returned function.
+
+🧠 STEP 3 — Inside handleUpload
+
+Now this runs:
+
+uploadFunction(req, res, (err) => {
+   ...
+});
+
+Here:
+
+uploadFunction = uploadResume
+
+Which came from:
+
+multer(...).single("resume")
+
+So now multer middleware starts running.
+
+🧠 STEP 4 — Multer Starts Processing
+
+Multer does internally:
+
+Reads incoming form-data stream
+
+Detects file field
+
+Builds file object
+
+Something like:
+
+file = {
+  originalname: "file.pdf",
+  mimetype: "application/pdf",
+  size: ...
+}
+🧠 STEP 5 — Multer Calls fileFilter
+
+Before saving file, multer checks:
+
+fileFilter(req, file, cb)
+
+It passes:
+
+req → same Express request
+
+file → file metadata
+
+cb → multer’s internal callback
+
+Now your code runs:
+
+if (allowed) {
+   cb(null, true);
+} else {
+   cb(new ApiError(...), false);
+}
+🧠 CASE A — File Valid
+
+You call:
+
+cb(null, true);
+
+Meaning:
+
+No error
+
+Accept file
+
+Multer continues.
+
+🧠 STEP 6 — Multer Calls destination
+
+Now multer asks:
+
+destination(req, file, cb)
+
+You respond:
+
+cb(null, uploadDir);
+
+Multer now knows where to save file.
+
+🧠 STEP 7 — Multer Calls filename
+
+Multer asks:
+
+filename(req, file, cb)
+
+You respond:
+
+cb(null, "resume-12345.pdf");
+
+Now multer knows final name.
+
+🧠 STEP 8 — Multer Saves File
+
+File is written to disk.
+
+Now multer attaches to request:
+
+req.file = { ...file info... }
+req.body = { name: "Ritesh" }
+🧠 STEP 9 — Multer Finishes
+
+Now multer finishes processing and calls the callback you passed:
+
+(err) => { ... }
+
+Since no error:
+
+err = null
+🧠 STEP 10 — Back To handleUpload
+
+Now this runs:
+
+if (err) {
+   next(error)
+}
+
+But err is null.
+
+So:
+
+next();
+🧠 STEP 11 — Controller Runs
+
+Now your controller runs.
+
+Inside controller:
+
+req.file   // available
+req.body   // available
+
+You send response:
+
+Upload successful
+
+Done.
+
+❌ CASE B — Invalid File Type
+
+Now different path.
+
+Inside fileFilter:
+
+cb(new ApiError(...), false);
+What Happens Now?
+
+Multer receives error
+
+Stops processing
+
+Does NOT save file
+
+Calls your upload callback:
+
+(err) => { ... }
+
+Now:
+
+err = ApiError
+Back To handleUpload
+
+Now this runs:
+
+if (err) {
+   return next(err);
+}
+
+So Express receives error.
+
+Express Error Middleware Runs
+
+Express catches error and sends response:
+
+400 Invalid file type
+
+Controller never runs.
