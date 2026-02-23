@@ -76,4 +76,4 @@ class TextExtractor {
 
 // means we cant access class method without creating object?we can use it only if its static?
 const textextractor = new TextExtractor()
-export {textextractor}
+export default textextractor

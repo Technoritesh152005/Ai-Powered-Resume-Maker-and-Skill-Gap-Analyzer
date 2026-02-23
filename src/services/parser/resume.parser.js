@@ -11,6 +11,7 @@ class resumeParser {
             logger.info(`Fetching text from resume : ${buffer}`)
             // we get all text from parser
             const textdata = await textextractor.textExtractorFromDifferentTypes(buffer, mimetype)
+            console.log(textdata)
             if (!textdata) {
                 logger.error(`Failed to fetch text from resume`)  
                 throw new Error("Failed to extract text from resume")  
@@ -42,13 +43,19 @@ class resumeParser {
 
             }
 
+            const wordCount = textextractor.countWords(textdata.text)
+            const rawText = textextractor.cleanText(textdata.text)
+            const pageCount = textdata.pages || null
+
             return {
                 parsedData,
-                wordcount: textextractor.countWords(textdata.text),
-                rawtext: textextractor.cleanText(textdata.text),
+                wordCount,
+                rawText,
+                pageCount,
                 extractedContacts: {
                     emails,
-                    phone, urls
+                    phone,
+                    urls
                 }
             }
 
@@ -85,4 +92,4 @@ class resumeParser {
 }
 
 const resumeParserInstance = new resumeParser();
-export {resumeParserInstance}
+export default resumeParserInstance
