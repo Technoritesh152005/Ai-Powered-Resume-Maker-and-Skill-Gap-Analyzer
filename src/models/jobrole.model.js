@@ -171,7 +171,8 @@ jobRoleSchema.statics.findSimilarRoles = async function(category , limit =5, exp
     .select('title slug description category , experienceLevel , salaryRange')
 }
 
-// 🔥 Imagine This Situation
+export const jobRoleModel = mongoose.model('jobRoleModel',jobRoleSchema)
+    // 🔥 Imagine This Situation
 
 // You have:
 
@@ -191,8 +192,7 @@ jobRoleSchema.statics.findSimilarRoles = async function(category , limit =5, exp
 
 // JobRole.find({ category: "development" })
 
-
-// MongoDB will:
+//  MongoDB will:
 
 // Check document 1
 
