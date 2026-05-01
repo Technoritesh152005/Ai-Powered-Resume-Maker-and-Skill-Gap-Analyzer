@@ -428,13 +428,13 @@ const AnalysisDetailPage = ()=>{
 
   return (
     <DashboardLayout>
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-3xl border border-white/5 bg-neutral-900 p-8 md:p-10 shadow-2xl relative overflow-hidden"
+        className="rounded-3xl border border-white/5 bg-neutral-900 p-5 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden"
       >
-        <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="relative z-10 flex flex-col gap-6 sm:gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0 space-y-4">
             <button
               onClick={() => navigate('/analysis')}
@@ -445,8 +445,8 @@ const AnalysisDetailPage = ()=>{
             </button>
 
             <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white capitalize">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white capitalize break-words">
                   {loading ? 'Loading...' : analysis?.jobRole?.title || 'Analysis Overview'}
                 </h1>
                 {analysis?.status && (
@@ -468,7 +468,7 @@ const AnalysisDetailPage = ()=>{
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-5 text-sm font-medium text-neutral-500">
+            <div className="flex flex-wrap gap-3 sm:gap-5 text-sm font-medium text-neutral-500">
               <span className="inline-flex items-center gap-2">
                 <Briefcase className="h-4 w-4 text-primary-500" />
                 {analysis?.jobRole?.category || 'Role Category'}
@@ -488,24 +488,24 @@ const AnalysisDetailPage = ()=>{
               </span>
             </div>
 
-            <p className="max-w-3xl text-base text-neutral-400 leading-relaxed font-medium">
+            <p className="max-w-3xl text-sm sm:text-base text-neutral-400 leading-relaxed font-medium">
               {analysis?.aiSuggestion?.summary || 'Reviewing your resume strengths and areas for improvement based on the selected role requirements.'}
             </p>
           </div>
 
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
             <button
               onClick={handleRegenerateAnalysis}
               disabled={regenerating || isAiLimitReached || !['completed', 'failed'].includes(analysis?.status)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 disabled:opacity-30"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 disabled:opacity-30"
             >
               <Target className="h-4 w-4 text-primary-400" />
               {regenerating ? 'Updating...' : 'Refresh Analysis'}
             </button>
             <button
               onClick={() => navigate(`/analysis/create?resumeId=${analysis?.resume?._id || ''}`)}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-500 shadow-lg shadow-primary-900/20"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-500 shadow-lg shadow-primary-900/20"
             >
               <ArrowRight className="h-4 w-4" />
               New Comparison
@@ -514,7 +514,7 @@ const AnalysisDetailPage = ()=>{
             <button
               onClick={handleDeleteAnalysis}
               disabled={deleting || isAnalysisDeleteBlocked}
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-5 py-3 text-sm font-semibold text-red-400 transition hover:bg-red-500/10"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-500/5 px-5 py-3 text-sm font-semibold text-red-400 transition hover:bg-red-500/10"
             >
               <Trash2 className="h-4 w-4" />
               {deleting ? 'Deleting...' : 'Delete'}
@@ -530,7 +530,7 @@ const AnalysisDetailPage = ()=>{
             <button
               type="button"
               onClick={() => navigate(`/roadmap/create?analysisId=${analysis?._id || id}`)}
-              className="inline-flex items-center gap-2 rounded-2xl border border-primary-200 bg-primary-50 px-5 py-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 dark:border-primary-900/40 dark:bg-primary-900/15 dark:text-primary-300"
+              className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl border border-primary-200 bg-primary-50 px-5 py-3 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 dark:border-primary-900/40 dark:bg-primary-900/15 dark:text-primary-300"
             >
               <Rocket className="h-4 w-4" />
               Generate Roadmap From This Analysis
@@ -558,7 +558,7 @@ const AnalysisDetailPage = ()=>{
         />
       ) : (
         <>
-          <section className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+          <section className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:grid-cols-4">
             <StatCard label="Match Score" value={analysis?.status === 'completed' ? `${analysis.matchScore || 0}%` : 'Pending'} icon={Target} tone={analysis?.status === 'completed' ? scoreTone(analysis.matchScore || 0) : 'text-neutral-500'} />
             <StatCard label="Readiness" value={analysis?.status === 'completed' ? String(analysis.readinessLevel || 'not-ready').replace('-', ' ') : 'Pending'} icon={Rocket} />
             <StatCard label="Time to Ready" value={analysis?.status === 'completed' ? `${analysis?.estimatedTimeToReady?.weeks || 0} weeks` : 'Pending'} icon={Clock3} />
@@ -566,7 +566,7 @@ const AnalysisDetailPage = ()=>{
           </section>
 
 
-          <section className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1.6fr)_360px]">
+          <section className="grid grid-cols-1 gap-6 sm:gap-8 xl:grid-cols-[minmax(0,1.6fr)_360px]">
             <div className="space-y-8">
               <Panel
                 title="Quick Summary"
@@ -591,7 +591,7 @@ const AnalysisDetailPage = ()=>{
                     tone="blue"
                   />
                 </div>
-                <div className="mt-6 rounded-2xl border border-white/5 bg-white/5 p-5">
+                  <div className="mt-6 rounded-2xl border border-white/5 bg-white/5 p-4 sm:p-5">
                   <p className="text-sm leading-7 text-neutral-300">
                     {analysis?.aiSuggestion?.summary || 'This report shows how your resume matches the role and what to improve next.'}
                   </p>
@@ -616,7 +616,7 @@ const AnalysisDetailPage = ()=>{
                     tone="success"
                   />
                 ) : (
-                  <div className="mt-8 space-y-8">
+                  <div className="mt-6 sm:mt-8 space-y-8">
                     <GapList
                       title="Critical Gaps"
                       items={analysis?.skillGaps?.critical || []}
@@ -642,7 +642,7 @@ const AnalysisDetailPage = ()=>{
                 )}
               </Panel>
 
-              <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 sm:gap-8 xl:grid-cols-2">
                 <Panel
                   title="Your Strengths"
                   icon={CheckCircle2}
@@ -667,7 +667,7 @@ const AnalysisDetailPage = ()=>{
                 <BreakdownBlock breakdown={analysis.matchBreakDown} />
               </Panel>
 
-              <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 sm:gap-8 xl:grid-cols-2">
                 <Panel
                   title="Extracted Resume Skills"
                   icon={Cpu}
@@ -711,7 +711,7 @@ const AnalysisDetailPage = ()=>{
 
             </div>
 
-            <div className="space-y-8 xl:sticky xl:top-24 xl:self-start">
+            <div className="space-y-6 sm:space-y-8 xl:sticky xl:top-24 xl:self-start">
               <Panel
                 title="ATS Details"
                 icon={ScanSearch}
@@ -770,7 +770,7 @@ const AnalysisDetailPage = ()=>{
                 description="How your experience compares with the role requirement."
               >
                 <div className="space-y-4">
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                      <div className="text-center p-3 rounded-2xl bg-white/5 border border-white/5">
                         <p className="text-[10px] text-neutral-500 uppercase font-bold">You</p>
                         <p className="text-lg font-bold text-white">{analysis?.experienceAnalysis?.candidateYears || 0}y</p>
@@ -826,9 +826,9 @@ const AnalysisDetailPage = ()=>{
 const Panel = ({ title, icon: Icon, description, children }) => (
   <motion.div 
     variants={itemVariants}
-    className="rounded-3xl border border-white/5 bg-neutral-900/40 p-8 shadow-xl backdrop-blur-xl relative overflow-hidden group hover:bg-neutral-900/60 transition-colors duration-300"
+    className="rounded-3xl border border-white/5 bg-neutral-900/40 p-5 sm:p-8 shadow-xl backdrop-blur-xl relative overflow-hidden group hover:bg-neutral-900/60 transition-colors duration-300"
   >
-    <div className="mb-6 flex items-center gap-4">
+    <div className="mb-6 flex items-start sm:items-center gap-3 sm:gap-4">
       <div className="rounded-2xl bg-white/5 p-3 border border-white/5">
         <Icon className="h-5 w-5 text-primary-400" />
       </div>
@@ -855,7 +855,7 @@ const GenerationNotice = ({ notice }) => {
     : 'bg-blue-500/15 text-blue-300 border-blue-500/20'
 
   return (
-    <div className={`rounded-3xl border px-6 py-5 ${toneClass}`}>
+    <div className={`rounded-3xl border px-5 sm:px-6 py-5 ${toneClass}`}>
       <div className="flex flex-wrap items-center gap-3">
         <span className={`rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] ${badgeClass}`}>
           {notice?.tone === 'warning' ? 'Fallback Mode' : 'Repaired Output'}
@@ -1067,7 +1067,7 @@ const AnalysisProcessingState = ({ analysis }) => {
 const StatCard = ({ label, value, icon: Icon, tone = 'text-white' }) => (
   <motion.div 
     variants={itemVariants}
-    className="rounded-3xl border border-white/5 bg-neutral-900/40 p-6 md:p-8 shadow-xl backdrop-blur-xl group transition-all duration-300"
+    className="rounded-3xl border border-white/5 bg-neutral-900/40 p-5 sm:p-6 md:p-8 shadow-xl backdrop-blur-xl group transition-all duration-300"
   >
     <div className="flex items-center justify-between">
       <p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">{label}</p>
@@ -1075,7 +1075,7 @@ const StatCard = ({ label, value, icon: Icon, tone = 'text-white' }) => (
         <Icon className="h-5 w-5" />
       </div>
     </div>
-    <p className={`mt-6 text-3xl font-bold tracking-tight capitalize leading-none ${tone}`}>{value}</p>
+    <p className={`mt-6 text-2xl sm:text-3xl font-bold tracking-tight capitalize leading-none break-words ${tone}`}>{value}</p>
   </motion.div>
 );
 
@@ -1120,7 +1120,7 @@ const BreakdownBlock = ({ breakdown }) => {
 const AnalysisFailedState = ({ analysis, regenerating, isAiLimitReached, onRetry }) => (
   <section className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.15fr)_340px]">
     <Panel title="Analysis Generation Failed" icon={Target}>
-      <div className="rounded-3xl border border-red-200 bg-red-50 p-5 dark:border-red-900/40 dark:bg-red-900/15">
+      <div className="rounded-3xl border border-red-200 bg-red-50 p-4 sm:p-5 dark:border-red-900/40 dark:bg-red-900/15">
         <p className="text-lg font-semibold text-red-800 dark:text-red-200">The analysis job did not complete.</p>
         <p className="mt-2 text-sm leading-6 text-red-700 dark:text-red-300">
           {getSafeAnalysisError(analysis?.error)}
@@ -1161,9 +1161,9 @@ const AnalysisFailedState = ({ analysis, regenerating, isAiLimitReached, onRetry
 )
 
 const GapSummaryCard = ({ label, value, className }) => (
-  <div className={`rounded-3xl px-6 py-8 border border-white/5 text-center transition-all hover:scale-105 duration-300 ${className}`}>
+  <div className={`rounded-3xl px-5 sm:px-6 py-6 sm:py-8 border border-white/5 text-center transition-all hover:scale-105 duration-300 ${className}`}>
     <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60 mb-2">{label}</p>
-    <p className="text-4xl font-black tracking-tighter leading-none">{value}</p>
+    <p className="text-3xl sm:text-4xl font-black tracking-tighter leading-none">{value}</p>
   </div>
 );
 

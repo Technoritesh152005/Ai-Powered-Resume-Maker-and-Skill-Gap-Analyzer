@@ -118,7 +118,7 @@ return (
             <button
               type="button"
               onClick={() => navigate('/analysis/create')}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-100"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-100 sm:w-auto"
             >
               <Briefcase className="h-4 w-4" />
               Go to Analysis
@@ -186,7 +186,7 @@ return (
                 key={role._id}
                 type="button"
                 onClick={() => navigate(`/job-roles/${role._id}`)}
-                className="group w-full rounded-3xl border border-neutral-200 bg-white p-6 text-left shadow-soft transition hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-700"
+                className="group w-full rounded-3xl border border-neutral-200 bg-white p-4 text-left shadow-soft transition hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-700 sm:p-6"
               >
                 <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                   <div className="min-w-0 flex-1">
@@ -202,7 +202,7 @@ return (
                       </span>
                     </div>
 
-                    <h2 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                    <h2 className="mt-4 break-words text-xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-2xl">
                       {role?.title || 'Untitled role'}
                     </h2>
 
@@ -216,14 +216,14 @@ return (
                         event.stopPropagation()
                         navigate(`/analysis/create?jobRoleId=${role._id}`)
                       }}
-                      className="mt-4 inline-flex items-center gap-2 rounded-2xl border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 dark:border-primary-900/40 dark:bg-primary-900/15 dark:text-primary-300"
+                      className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 dark:border-primary-900/40 dark:bg-primary-900/15 dark:text-primary-300 sm:w-auto"
                     >
                       Analyze this role
                       <ArrowRight className="h-4 w-4" />
                     </button>
                   </div>
 
-                  <div className="grid min-w-full grid-cols-2 gap-3 lg:min-w-[280px]">
+                  <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:min-w-[280px]">
                     <MetricCard label="Views" value={role?.views || 0} />
                     <MetricCard label="Growth" value={role?.growthRate ? `${role.growthRate}%` : 'N/A'} />
                     <MetricCard label="Openings" value={role?.jobOpenings || 'N/A'} />

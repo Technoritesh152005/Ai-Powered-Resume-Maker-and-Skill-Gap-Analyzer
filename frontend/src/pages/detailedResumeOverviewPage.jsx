@@ -189,7 +189,7 @@ const ResumeDetailPage = () => {
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <button
             onClick={() => navigate('/resumes')}
-            className="group flex items-center gap-2 text-neutral-500 hover:text-white transition-all font-bold uppercase tracking-widest text-xs"
+            className="group flex w-fit items-center gap-2 text-neutral-500 hover:text-white transition-all font-bold uppercase tracking-widest text-xs"
           >
             <div className="p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
               <ArrowLeft className="w-4 h-4" />
@@ -201,7 +201,7 @@ const ResumeDetailPage = () => {
             <button
               onClick={handleReparse}
               disabled={reparsing}
-              className="flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600/10 text-blue-400 border border-blue-600/20 rounded-xl hover:bg-blue-600/20 transition-all disabled:opacity-50"
+              className="flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 sm:py-2.5 bg-blue-600/10 text-blue-400 border border-blue-600/20 rounded-xl hover:bg-blue-600/20 transition-all disabled:opacity-50"
             >
               <RefreshCw className={`w-4 h-4 ${reparsing ? 'animate-spin' : ''}`} />
               <span className="text-xs font-black uppercase tracking-widest">Reparse</span>
@@ -209,7 +209,7 @@ const ResumeDetailPage = () => {
 
             <button
               onClick={() => navigate(`/analysis/create?resumeId=${id}`)}
-              className="btn-gradient justify-center px-6 py-2.5"
+              className="btn-gradient w-full sm:w-auto justify-center px-6 py-3 sm:py-2.5"
             >
               <Target className="w-4 h-4" />
               <span className="text-xs font-black uppercase tracking-widest">Analyze Gaps</span>
@@ -217,7 +217,7 @@ const ResumeDetailPage = () => {
 
             <button
               onClick={handleViewOriginalResume}
-              className="flex items-center justify-center gap-2 px-5 py-2.5 bg-white/5 text-white border border-white/10 rounded-xl hover:bg-white/10 transition-all"
+              className="flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 sm:py-2.5 bg-white/5 text-white border border-white/10 rounded-xl hover:bg-white/10 transition-all"
             >
               <Eye className="w-4 h-4" />
               <span className="text-xs font-black uppercase tracking-widest">View Original</span>
@@ -225,9 +225,10 @@ const ResumeDetailPage = () => {
 
             <button
               onClick={handleDelete}
-              className="flex items-center justify-center p-2.5 bg-danger-500/10 text-danger-400 border border-danger-500/20 rounded-xl hover:bg-danger-500/20 transition-all sm:self-start"
+              className="flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 sm:px-3 sm:py-2.5 bg-danger-500/10 text-danger-400 border border-danger-500/20 rounded-xl hover:bg-danger-500/20 transition-all sm:self-start"
             >
               <Trash2 className="w-4 h-4" />
+              <span className="text-xs font-black uppercase tracking-widest sm:hidden">Delete</span>
             </button>
           </div>
         </div>
@@ -257,7 +258,7 @@ const ResumeDetailPage = () => {
               </div>
             </div>
             
-            <div className="grid w-full grid-cols-2 gap-4 sm:w-auto xl:min-w-[280px]">
+            <div className="grid w-full grid-cols-1 gap-4 sm:w-auto sm:grid-cols-2 xl:min-w-[280px]">
                <div className="rounded-2xl border border-white/5 bg-white/5 px-4 py-3 text-center">
                   <p className="text-[10px] font-black text-neutral-600 uppercase tracking-[0.2em] mb-1">File Size</p>
                   <p className="text-xl font-bold text-white">{(resume.fileSize / 1024 / 1024).toFixed(2)} MB</p>
@@ -296,7 +297,7 @@ const ResumeDetailPage = () => {
                 expanded={expandedSections.summary}
                 onToggle={() => toggleSection('summary')}
               >
-                <p className="text-neutral-300 font-medium leading-relaxed text-lg">
+                <p className="text-neutral-300 font-medium leading-relaxed text-base sm:text-lg">
                   {parsedData.summary}
                 </p>
               </Section>
@@ -311,29 +312,29 @@ const ResumeDetailPage = () => {
                 expanded={expandedSections.experience}
                 onToggle={() => toggleSection('experience')}
               >
-                <div className="space-y-12 pt-4">
+                <div className="space-y-8 sm:space-y-12 pt-4">
                   {parsedData.experience.map((exp, index) => (
-                    <div key={index} className="relative pl-10">
+                    <div key={index} className="relative pl-8 sm:pl-10">
                       {/* Timeline Connector */}
                       {index !== parsedData.experience.length - 1 && (
-                        <div className="absolute left-[15px] top-[30px] bottom-[-30px] w-0.5 bg-gradient-to-b from-primary-500/50 to-transparent" />
+                        <div className="absolute left-[11px] sm:left-[15px] top-[28px] sm:top-[30px] bottom-[-24px] sm:bottom-[-30px] w-0.5 bg-gradient-to-b from-primary-500/50 to-transparent" />
                       )}
                       {/* Timeline Dot */}
-                      <div className="absolute left-0 top-1 w-8 h-8 bg-neutral-950 border-2 border-primary-500 rounded-full flex items-center justify-center shadow-glow-sm z-10">
-                        <Briefcase className="w-4 h-4 text-primary-400" />
+                      <div className="absolute left-0 top-1 w-6 h-6 sm:w-8 sm:h-8 bg-neutral-950 border-2 border-primary-500 rounded-full flex items-center justify-center shadow-glow-sm z-10">
+                        <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary-400" />
                       </div>
                       
                       <div className="space-y-4">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                           <div>
-                            <h4 className="text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
+                            <h4 className="text-lg sm:text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
                               {exp.title}
                             </h4>
                             <p className="text-primary-400 font-black tracking-widest text-xs uppercase mt-1">
                               {exp.company}
                             </p>
                           </div>
-                          <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/5 text-xs font-bold text-neutral-400 whitespace-nowrap">
+                          <div className="flex flex-wrap items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/5 text-xs font-bold text-neutral-400">
                             <Calendar className="w-3.5 h-3.5 text-neutral-500" />
                             {exp.startDate && format(new Date(exp.startDate), 'MMM yyyy')}
                             {' — '}
@@ -439,7 +440,7 @@ const ResumeDetailPage = () => {
           <aside className="space-y-6 lg:space-y-8 min-w-0">
             {/* Personal Information */}
             {hasPersonalInfo && (
-              <div className="card-glass p-8 border-white/5 space-y-6">
+              <div className="card-glass p-5 sm:p-8 border-white/5 space-y-6">
                 <h3 className="text-xs font-black text-neutral-500 uppercase tracking-[0.3em] flex items-center gap-2">
                   <User className="w-4 h-4 text-primary-400" />
                   Profile Details
@@ -474,7 +475,7 @@ const ResumeDetailPage = () => {
 
             {/* Skills */}
             {hasSkills && (
-              <div className="card-glass p-8 border-white/5 space-y-8">
+              <div className="card-glass p-5 sm:p-8 border-white/5 space-y-8">
                 <h3 className="text-xs font-black text-neutral-500 uppercase tracking-[0.3em] flex items-center gap-2">
                   <Code className="w-4 h-4 text-accent-400" />
                   Skill Arsenal
@@ -495,7 +496,7 @@ const ResumeDetailPage = () => {
 
             {/* Education */}
             {hasEducation && (
-              <div className="card-glass p-8 border-white/5 space-y-6">
+              <div className="card-glass p-5 sm:p-8 border-white/5 space-y-6">
                 <h3 className="text-xs font-black text-neutral-500 uppercase tracking-[0.3em] flex items-center gap-2">
                   <GraduationCap className="w-4 h-4 text-success-400" />
                   Education
@@ -528,25 +529,25 @@ const Section = ({ title, icon: Icon, count, children, expanded, onToggle }) => 
   <div className="card-glass overflow-hidden border-white/5">
     <button
       onClick={onToggle}
-      className="w-full px-8 py-6 flex items-center justify-between hover:bg-white/2 transition-all group"
+      className="w-full px-5 py-5 sm:px-8 sm:py-6 flex items-start sm:items-center justify-between gap-4 hover:bg-white/2 transition-all group text-left"
     >
-      <div className="flex items-center gap-4">
-        <div className="p-2.5 bg-primary-500/10 rounded-xl border border-primary-500/20 text-primary-400 group-hover:scale-110 transition-transform">
+      <div className="flex min-w-0 items-start sm:items-center gap-3 sm:gap-4">
+        <div className="p-2.5 bg-primary-500/10 rounded-xl border border-primary-500/20 text-primary-400 group-hover:scale-110 transition-transform shrink-0">
           <Icon className="w-5 h-5" />
         </div>
-        <div className="flex items-baseline gap-2">
-           <h2 className="text-xl font-black text-white tracking-tight uppercase tracking-widest">
+        <div className="flex min-w-0 flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+           <h2 className="text-lg sm:text-xl font-black text-white tracking-tight uppercase tracking-[0.18em] sm:tracking-widest break-words">
              {title}
            </h2>
            {count && <span className="text-xs font-black text-neutral-600 tracking-[0.2em]">{count} ITEMS</span>}
         </div>
       </div>
-      <div className={`p-2 rounded-lg bg-white/5 text-neutral-500 group-hover:text-white transition-all ${expanded ? 'rotate-180' : ''}`}>
+      <div className={`p-2 rounded-lg bg-white/5 text-neutral-500 group-hover:text-white transition-all shrink-0 ${expanded ? 'rotate-180' : ''}`}>
         <ChevronUp className="w-4 h-4" />
       </div>
     </button>
     {expanded && (
-      <div className="px-8 pb-8 animate-slide-down">
+      <div className="px-5 pb-5 sm:px-8 sm:pb-8 animate-slide-down">
         {children}
       </div>
     )}
@@ -554,13 +555,13 @@ const Section = ({ title, icon: Icon, count, children, expanded, onToggle }) => 
 );
 
 const InfoItem = ({ icon: Icon, label, value }) => (
-  <div className="flex items-center gap-4 group/item">
-    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/5 group-hover/item:border-primary-500/30 transition-all">
+  <div className="flex items-start gap-3 sm:gap-4 group/item">
+    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/5 group-hover/item:border-primary-500/30 transition-all shrink-0">
       <Icon className="w-4 h-4 text-neutral-500 group-hover/item:text-primary-400" />
     </div>
     <div className="flex-1 min-w-0">
       <p className="text-[10px] font-black text-neutral-600 uppercase tracking-widest mb-0.5">{label}</p>
-      <p className="font-bold text-white truncate text-sm">{value}</p>
+      <p className="font-bold text-white break-words text-sm">{value}</p>
     </div>
   </div>
 );

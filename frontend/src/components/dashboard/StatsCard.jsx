@@ -39,7 +39,7 @@ const StatsCard = ({
   }
 
   return (
-    <div className={`group relative bg-white/4 backdrop-blur-xl rounded-[28px] p-6 border border-white/8 transition-all duration-500 hover:-translate-y-1.5 hover:bg-white/6 ${colorGlows[color]} shadow-2xl`}>
+      <div className={`group relative bg-white/4 backdrop-blur-xl rounded-[28px] p-5 sm:p-6 border border-white/8 transition-all duration-500 hover:-translate-y-1.5 hover:bg-white/6 ${colorGlows[color]} shadow-2xl`}>
       
       {/* Background glow pulse on hover */}
       <div className="absolute inset-0 rounded-[28px] bg-white/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -55,7 +55,7 @@ const StatsCard = ({
         </div>
 
         <div className="space-y-1.5">
-          <h3 className="text-3xl font-black text-white tracking-tighter">
+          <h3 className="text-[1.75rem] sm:text-3xl font-black text-white tracking-tighter break-words">
             {value}
           </h3>
 
