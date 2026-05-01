@@ -22,18 +22,18 @@ const SkillProgressChart = ({ skills = [], loading = false }) => {
   }
 
   return (
-    <div className="bg-white/4 backdrop-blur-xl rounded-[32px] p-7 border border-white/8 shadow-2xl relative overflow-hidden group">
+    <div className="bg-white/4 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 border border-white/8 shadow-2xl relative overflow-hidden group min-w-0">
       {/* Background flare */}
       <div className="absolute -top-24 -left-24 w-48 h-48 bg-primary-500/10 rounded-full blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-      <div className="flex items-center justify-between mb-8 relative z-10">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8 relative z-10">
         <h2 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-primary-600/20 border border-primary-500/30 flex items-center justify-center">
             <TrendingUp className="w-4 h-4 text-primary-400" />
           </div>
           Skill Trajectory
         </h2>
-        <div className="flex items-center gap-5 text-[10px] font-bold uppercase tracking-tight">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-5 text-[10px] font-bold uppercase tracking-tight">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 shadow-[0_0_8px_rgba(124,58,237,0.4)]" />
             <span className="text-neutral-400">Current</span>
@@ -52,9 +52,9 @@ const SkillProgressChart = ({ skills = [], loading = false }) => {
           
           return (
             <div key={index} className="group/item">
-              <div className="flex items-center justify-between mb-2.5">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-black text-neutral-200 tracking-tight uppercase">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-2.5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-black text-neutral-200 tracking-tight uppercase break-words">
                     {skill.name}
                   </span>
                   {isNearTarget && (
@@ -63,7 +63,7 @@ const SkillProgressChart = ({ skills = [], loading = false }) => {
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-3 text-[10px] font-bold">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] font-bold">
                   <span className="text-neutral-500 tracking-tighter uppercase">
                     {skill.current} <span className="text-neutral-700">/</span> {skill.target} pts
                   </span>
@@ -96,7 +96,7 @@ const SkillProgressChart = ({ skills = [], loading = false }) => {
               </div>
 
               {/* Progress context */}
-              <div className="mt-2 flex items-center justify-between opacity-0 group-hover/item:opacity-100 transition-opacity duration-500">
+              <div className="mt-2 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between opacity-100 sm:opacity-0 sm:group-hover/item:opacity-100 transition-opacity duration-500">
                 <div className="flex items-center gap-1.5 text-[9px] text-neutral-600 font-bold uppercase tracking-widest">
                   <TargetIcon className="w-2.5 h-2.5" />
                   <span>Market Target Acquired</span>

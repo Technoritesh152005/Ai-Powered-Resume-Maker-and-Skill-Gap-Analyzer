@@ -57,12 +57,12 @@ const RecentActivity = ({ activities = [], loading = false }) => {
   }
 
   return (
-    <div className="bg-white/4 backdrop-blur-xl rounded-[32px] p-7 border border-white/8 shadow-2xl h-full flex flex-col group overflow-hidden">
+    <div className="bg-white/4 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 border border-white/8 shadow-2xl h-full flex flex-col group overflow-hidden relative">
       
       {/* Background Flare */}
       <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-accent-500/5 rounded-full blur-[80px] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-      <div className="flex items-center justify-between mb-8 relative z-10">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-8 relative z-10">
         <h2 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-neutral-800/50 border border-white/5 flex items-center justify-center">
             <Clock className="w-4 h-4 text-neutral-400" />
@@ -96,7 +96,7 @@ const RecentActivity = ({ activities = [], loading = false }) => {
               <div 
                 key={activity.id || index} 
                 onClick={() => handleActivityClick(activity)}
-                className="flex gap-4 items-center group/item hover:bg-white/5 p-3 rounded-2xl transition-all duration-300 cursor-pointer border border-transparent hover:border-white/5"
+                className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4 group/item hover:bg-white/5 p-3 rounded-2xl transition-all duration-300 cursor-pointer border border-transparent hover:border-white/5"
               >
                 {/* Icon */}
                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border transition-all duration-500 group-hover/item:scale-110 ${colorClass}`}>
@@ -114,7 +114,7 @@ const RecentActivity = ({ activities = [], loading = false }) => {
                 </div>
 
                 {/* Meta */}
-                <div className="text-right flex flex-col items-end gap-1">
+                <div className="flex w-full items-center justify-between gap-3 sm:w-auto sm:flex-col sm:items-end sm:justify-start">
                   <p className="text-[9px] text-neutral-600 font-bold uppercase whitespace-nowrap">
                     {activity.timestamp ? formatDistanceToNow(new Date(activity.timestamp), { addSuffix: true }) : 'Just now'}
                   </p>

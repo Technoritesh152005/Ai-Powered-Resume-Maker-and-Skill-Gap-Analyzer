@@ -18,12 +18,12 @@ const WelcomeBanner = () => {
 
   return (
     <div className="relative overflow-hidden group">
-      <div className="relative z-10 p-7 xl:p-9 rounded-[32px] border border-white/8 bg-white/4 backdrop-blur-xl transition-all duration-500 hover:bg-white/6 hover:border-white/12 shadow-2xl">
+      <div className="relative z-10 p-5 sm:p-7 xl:p-9 rounded-[28px] sm:rounded-[32px] border border-white/8 bg-white/4 backdrop-blur-xl transition-all duration-500 hover:bg-white/6 hover:border-white/12 shadow-2xl">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent opacity-60" />
 
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div className="space-y-5 max-w-2xl">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <div className="px-3 py-1 rounded-full bg-primary-600/20 border border-primary-500/30 text-[10px] font-black text-primary-400 uppercase tracking-widest">
                 Profile Active
               </div>
@@ -34,7 +34,7 @@ const WelcomeBanner = () => {
             </div>
 
             <div className="space-y-1">
-              <h1 className="text-3xl xl:text-4xl font-black text-white tracking-tight leading-tight">
+              <h1 className="text-2xl sm:text-3xl xl:text-4xl font-black text-white tracking-tight leading-tight">
                 {greeting}, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-accent-400">{firstName}</span>.
               </h1>
               <p className="text-neutral-400 text-sm xl:text-base font-medium leading-relaxed">
@@ -56,13 +56,13 @@ const WelcomeBanner = () => {
 
           <div className="lg:w-px lg:h-24 bg-white/10 hidden lg:block" />
 
-          <div className="flex items-center gap-6">
-            <div className="text-center px-6 py-4 bg-primary-600/10 rounded-3xl border border-primary-600/20 min-w-[120px]">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-4 sm:gap-6">
+            <div className="text-center px-5 sm:px-6 py-4 bg-primary-600/10 rounded-3xl border border-primary-600/20 min-w-0">
               <div className="text-[10px] font-black text-primary-400 uppercase tracking-widest mb-1.5 opacity-70">Readiness</div>
               <div className="text-3xl font-black text-white leading-none tracking-tighter">84<span className="text-sm font-normal text-neutral-500 ml-0.5">%</span></div>
             </div>
             
-            <div className="text-center px-6 py-4 bg-accent-600/10 rounded-3xl border border-accent-600/20 min-w-[120px]">
+            <div className="text-center px-5 sm:px-6 py-4 bg-accent-600/10 rounded-3xl border border-accent-600/20 min-w-0">
               <div className="text-[10px] font-black text-accent-400 uppercase tracking-widest mb-1.5 opacity-70">Impact</div>
               <div className="text-3xl font-black text-white leading-none tracking-tighter">Gold</div>
             </div>

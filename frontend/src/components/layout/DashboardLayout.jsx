@@ -19,7 +19,7 @@ import Logo from '../common components/Logo.jsx';
 const DashboardLayout = ({
   children,
   contentContainerClassName = 'max-w-[1600px] mx-auto',
-  contentClassName = 'p-6 sm:p-8 lg:p-10',
+  contentClassName = 'p-4 sm:p-8 lg:p-10',
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDesktopSidebarCollapsed, setIsDesktopSidebarCollapsed] = useState(() => {
@@ -222,7 +222,7 @@ const DashboardLayout = ({
         
         {/* Header / Top Nav */}
         <header className="sticky top-0 z-30 glass-panel border-b border-white/8">
-          <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center justify-between px-4 py-4 sm:px-6">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setIsSidebarOpen(true)}
@@ -251,7 +251,7 @@ const DashboardLayout = ({
         </header>
 
         {/* Content Area */}
-        <main className={`flex-1 flex flex-col h-[calc(100vh-80px)] overflow-hidden ${contentClassName}`}>
+        <main className={`flex-1 flex flex-col h-[calc(100vh-80px)] overflow-hidden min-w-0 ${contentClassName}`}>
           <div className={`${contentContainerClassName} w-full flex-1 flex flex-col h-full bg-transparent no-scrollbar overflow-y-auto`}>
              <style>{`
                .no-scrollbar::-webkit-scrollbar { display: none; }

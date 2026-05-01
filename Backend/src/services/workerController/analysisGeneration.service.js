@@ -290,6 +290,43 @@ const buildMatchBreakdown = (jobRole, skillGapAnalysisData) => {
     }
 }
 
+const buildMatchScoreFromBreakdown = (matchBreakdown) => {
+    const criticalTotal = Number(matchBreakdown?.criticalSkills?.total) || 0
+    const importantTotal = Number(matchBreakdown?.importantSkills?.total) || 0
+    const niceToHaveTotal = Number(matchBreakdown?.niceToHaveSkills?.total) || 0
+    const total = criticalTotal + importantTotal + niceToHaveTotal
+
+    if (total <= 0) {
+        return 0
+    }
+
+    const matched =
+        (Number(matchBreakdown?.criticalSkills?.matched) || 0) +
+        (Number(matchBreakdown?.importantSkills?.matched) || 0) +
+        (Number(matchBreakdown?.niceToHaveSkills?.matched) || 0)
+
+    return Math.max(0, Math.min(100, Math.round((matched / total) * 100)))
+}
+
+const shouldUseGapAlignedMatchScore = ({
+    rawMatchScore,
+    alignedMatchScore,
+    skillGapGenerationMeta,
+    skillGapAnalysisData,
+}) => {
+    if (skillGapGenerationMeta?.usedFallback) {
+        return true
+    }
+
+    const criticalGapCount = skillGapAnalysisData?.skillGaps?.critical?.length || 0
+    const importantGapCount = skillGapAnalysisData?.skillGaps?.important?.length || 0
+    const hasHighPriorityGaps = criticalGapCount > 0 || importantGapCount > 0
+
+    // If the final displayed gap buckets still show high-priority misses, do not keep
+    // an overly optimistic score that disagrees with those buckets.
+    return hasHighPriorityGaps && rawMatchScore > alignedMatchScore + 15
+}
+
 const buildSkillArtifacts = (skillGapAnalysisData, resumeData) => {
     const normalizedSkillGaps = {
         critical: (skillGapAnalysisData.skillGaps?.critical || []).map((item) => ({
@@ -496,8 +533,25 @@ export const processAnalysisGenerationJob = async ({ analysisId, userId, resumeI
         analysis.processingStage = ANALYSIS_PROCESSING_STAGE.FINALIZING
         await analysis.save()
 
-        analysis.matchScore = skillGapAnalysisData.overallAssessment.matchPercentage
-        analysis.matchBreakDown = buildMatchBreakdown(jobRole, skillGapAnalysisData)
+        const rawMatchScore = extractNumericValue(skillGapAnalysisData?.overallAssessment?.matchPercentage)
+        const matchBreakDown = buildMatchBreakdown(jobRole, skillGapAnalysisData)
+        const alignedMatchScore = buildMatchScoreFromBreakdown(matchBreakDown)
+
+        analysis.matchBreakDown = matchBreakDown
+        analysis.matchScore = shouldUseGapAlignedMatchScore({
+            rawMatchScore,
+            alignedMatchScore,
+            skillGapGenerationMeta,
+            skillGapAnalysisData,
+        })
+            ? alignedMatchScore
+            : rawMatchScore
+
+        if (analysis.matchScore !== rawMatchScore) {
+            logger.warn(
+                `Adjusted inconsistent analysis match score for analysis ${analysisId} from ${rawMatchScore} to ${analysis.matchScore}`
+            )
+        }
 
         const {
             normalizedSkillGaps,

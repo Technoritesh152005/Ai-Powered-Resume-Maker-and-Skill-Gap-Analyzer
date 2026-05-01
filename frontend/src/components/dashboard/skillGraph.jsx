@@ -14,12 +14,24 @@ import {
 import { LineChart as LineIcon, BarChart3, Sparkles } from 'lucide-react';
 import { buildVisibleAnalysisChartData } from '../../utils/analysisChart.js';
 
+const MATCH_SCORE_COLOR = '#22c55e';
+
 const chartModes = [
   { id: 'line', label: 'Line', icon: LineIcon },
   { id: 'bar', label: 'Bar', icon: BarChart3 },
 ];
 
-const MATCH_SCORE_COLOR = '#22c55e';
+const chartSeries = {
+  line: [
+    { name: 'Match Score', color: MATCH_SCORE_COLOR },
+    { name: 'Critical Gaps', color: '#f43f5e' },
+    { name: 'Important Gaps', color: '#3b82f6' },
+  ],
+  bar: [
+    { name: 'Match Score', color: MATCH_SCORE_COLOR },
+    { name: 'Critical Gaps', color: '#f43f5e' },
+  ],
+};
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
@@ -82,7 +94,6 @@ const SkillProgressGraph = ({ data = {}, loading = false }) => {
             <YAxis yAxisId="score" domain={[0, 100]} stroke="rgba(255,255,255,0.3)" style={{ fontSize: '10px', fontWeight: 'bold' }} tickLine={false} axisLine={false} dx={-10} />
             <YAxis yAxisId="gaps" orientation="right" stroke="rgba(255,255,255,0.3)" style={{ fontSize: '10px', fontWeight: 'bold' }} tickLine={false} axisLine={false} dx={10} />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(255,255,255,0.03)' }} />
-            <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.05em' }} />
             <Bar yAxisId="score" dataKey="matchScore" name="Match Score" fill={MATCH_SCORE_COLOR} radius={[6, 6, 0, 0]} />
             <Bar yAxisId="gaps" dataKey="criticalGaps" name="Critical Gaps" fill="#f43f5e" radius={[6, 6, 0, 0]} />
           </BarChart>
@@ -98,7 +109,6 @@ const SkillProgressGraph = ({ data = {}, loading = false }) => {
           <YAxis yAxisId="score" domain={[0, 100]} stroke="rgba(255,255,255,0.3)" style={{ fontSize: '10px', fontWeight: 'bold' }} tickLine={false} axisLine={false} dx={-10} />
           <YAxis yAxisId="gaps" orientation="right" stroke="rgba(255,255,255,0.3)" style={{ fontSize: '10px', fontWeight: 'bold' }} tickLine={false} axisLine={false} dx={10} />
           <Tooltip content={<CustomTooltip />} />
-          <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', fontSize: '10px', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.05em' }} />
           <Line yAxisId="score" type="monotone" dataKey="matchScore" name="Match Score" stroke={MATCH_SCORE_COLOR} strokeWidth={4} dot={matchDot} activeDot={{ r: 6, strokeWidth: 0, fill: MATCH_SCORE_COLOR }} />
           <Line yAxisId="gaps" type="monotone" dataKey="criticalGaps" name="Critical Gaps" stroke="#f43f5e" strokeWidth={3} dot={gapDot} activeDot={{ r: 5, strokeWidth: 0 }} />
           <Line yAxisId="gaps" type="monotone" dataKey="importantGaps" name="Important Gaps" stroke="#3b82f6" strokeWidth={3} dot={gapDot} activeDot={{ r: 5, strokeWidth: 0 }} />
@@ -108,11 +118,11 @@ const SkillProgressGraph = ({ data = {}, loading = false }) => {
   };
 
   return (
-    <div className="rounded-[32px] border border-white/8 bg-white/4 p-8 backdrop-blur-xl shadow-2xl relative group overflow-hidden">
+    <div className="rounded-[28px] sm:rounded-[32px] border border-white/8 bg-white/4 p-5 sm:p-8 backdrop-blur-xl shadow-2xl relative group overflow-hidden min-w-0">
       <div className="absolute top-0 right-0 h-32 w-32 bg-primary-500/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-start md:justify-between relative z-10">
-        <div>
+        <div className="min-w-0">
           <h2 className="flex items-center gap-2.5 text-sm font-black text-white uppercase tracking-widest">
             <div className="w-8 h-8 rounded-lg bg-accent-600/20 border border-accent-500/30 flex items-center justify-center">
               <LineIcon className="h-4 w-4 text-accent-400" />
@@ -129,7 +139,7 @@ const SkillProgressGraph = ({ data = {}, loading = false }) => {
           ) : null}
         </div>
 
-        <div className="flex items-center gap-1.5 rounded-2xl bg-white/5 border border-white/8 p-1">
+        <div className="flex flex-wrap items-center gap-1.5 rounded-2xl bg-white/5 border border-white/8 p-1">
           {chartModes.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
@@ -155,6 +165,15 @@ const SkillProgressGraph = ({ data = {}, loading = false }) => {
         </div>
       </div>
 
+      <div className="mt-4 flex flex-wrap items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+        {chartSeries[chartMode].map((series) => (
+          <div key={series.name} className="flex items-center gap-2">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: series.color, boxShadow: `0 0 8px ${series.color}` }} />
+            <span>{series.name}</span>
+          </div>
+        ))}
+      </div>
+
       <div className="mt-8 grid grid-cols-1 gap-6 border-t border-white/8 pt-8 md:grid-cols-3 relative z-10">
         <div className="text-center group/stat">
           <div className="text-3xl font-black text-white tracking-tighter group-hover:scale-110 transition-transform duration-500">{totalCount}</div>
@@ -172,8 +191,8 @@ const SkillProgressGraph = ({ data = {}, loading = false }) => {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center gap-2.5 rounded-2xl bg-white/5 border border-white/5 px-4 py-3">
-        <Sparkles className="h-4 w-4 text-accent-400" />
+      <div className="mt-6 flex items-start sm:items-center gap-2.5 rounded-2xl bg-white/5 border border-white/5 px-4 py-3">
+        <Sparkles className="h-4 w-4 text-accent-400 shrink-0 mt-0.5 sm:mt-0" />
         <p className="text-[10px] font-bold text-neutral-400 tracking-tight uppercase">
           Clean View: <span className="text-neutral-200">Dense history is compressed into a recent rolling window for readability</span>.
         </p>

@@ -228,7 +228,7 @@ const roadmapListPage = () => {
                   key={item._id}
                   type="button"
                   onClick={() => navigate(`/roadmap/${item._id}`)}
-                  className={`group relative w-full overflow-hidden rounded-[1.85rem] border p-6 text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-xl dark:hover:border-primary-700 ${state.cardClass}`}
+                  className={`group relative w-full overflow-hidden rounded-[1.85rem] border p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:shadow-xl dark:hover:border-primary-700 sm:p-6 ${state.cardClass}`}
                 >
                   <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${state.ringClass}`} />
 
@@ -248,7 +248,7 @@ const roadmapListPage = () => {
 
                       <div className="mt-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                         <div className="min-w-0">
-                          <h2 className="text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                          <h2 className="break-words text-xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-2xl">
                             {item?.title || item?.analysis?.jobRole?.title || 'Learning roadmap'}
                           </h2>
                           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-neutral-600 dark:text-neutral-300">
@@ -281,7 +281,7 @@ const roadmapListPage = () => {
                       </p>
                     </div>
 
-                    <div className="grid min-w-full grid-cols-2 gap-3 lg:min-w-[320px]">
+                    <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:min-w-[320px]">
                       <MetricCard label="Progress" value={`${progress}%`} tone={state.pillClass} />
                       <MetricCard label="Completed" value={item?.progress?.completedItems || 0} tone={state.pillClass} />
                       <MetricCard label="Total Items" value={item?.progress?.totalItems || 0} tone={state.pillClass} />
@@ -290,7 +290,7 @@ const roadmapListPage = () => {
                     </div>
 
                     <div className="mt-6 rounded-[1.3rem] border border-white/50 bg-white/60 p-4 dark:border-neutral-700/80 dark:bg-neutral-900/40">
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between text-sm text-neutral-600 dark:text-neutral-300">
                           <span>Roadmap completion</span>
@@ -307,17 +307,17 @@ const roadmapListPage = () => {
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                         <button
                           type="button"
                           onClick={(event) => handleDeleteRoadmap(event, item._id, item?.title || item?.analysis?.jobRole?.title)}
                           disabled={deletingId === item._id}
-                          className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-60 dark:border-red-900/40 dark:bg-red-900/15 dark:text-red-300"
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-60 dark:border-red-900/40 dark:bg-red-900/15 dark:text-red-300 sm:w-auto"
                         >
                           <Trash2 className="h-4 w-4" />
                           {deletingId === item._id ? 'Deleting...' : 'Delete'}
                         </button>
-                        <span className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-4 py-2 text-sm font-semibold text-white transition group-hover:translate-x-1 dark:bg-white dark:text-neutral-950">
+                        <span className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-4 py-2 text-sm font-semibold text-white transition group-hover:translate-x-1 dark:bg-white dark:text-neutral-950 sm:w-auto">
                           View roadmap
                           <ArrowRight className="h-4 w-4" />
                         </span>
