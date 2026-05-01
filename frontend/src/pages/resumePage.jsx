@@ -58,22 +58,22 @@ const resumePage = ()=> {
 
   return (
     <DashboardLayout>
-      <div className="space-y-10 animate-fade-in">
+      <div className="space-y-8 sm:space-y-10 animate-fade-in">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6">
           <div className="space-y-2">
-            <h1 className="text-4xl font-black text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
               My <span className="text-gradient">Resumes</span>
             </h1>
-            <p className="text-neutral-400 font-medium">
+            <p className="text-sm sm:text-base text-neutral-400 font-medium">
               Manage and analyze your professional documents with AI.
             </p>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex w-full md:w-auto items-center gap-3">
             <button
               onClick={() => navigate('/upload')}
-              className="btn-gradient px-6 py-3 shadow-glow-sm"
+              className="btn-gradient w-full md:w-auto px-6 py-3 shadow-glow-sm"
             >
               <Plus className="w-5 h-5 drop-shadow-md" />
               Upload New
@@ -83,9 +83,9 @@ const resumePage = ()=> {
 
         {/* Loading State */}
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="card-glass p-8 border-white/5 animate-pulse">
+              <div key={i} className="card-glass p-6 sm:p-8 border-white/5 animate-pulse">
                 <div className="h-20 w-20 bg-white/5 rounded-2xl mb-6" />
                 <div className="h-7 bg-white/5 rounded-lg mb-3 w-3/4" />
                 <div className="h-4 bg-white/5 rounded-lg w-1/2 mb-6" />
@@ -97,23 +97,23 @@ const resumePage = ()=> {
 
         {/* Empty State */}
         {!loading && resume.length === 0 && (
-          <div className="card-glass p-16 text-center relative overflow-hidden group">
+          <div className="card-glass p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden group">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-600/10 rounded-full blur-[100px] group-hover:bg-primary-600/20 transition-all duration-700" />
             <div className="relative z-10 space-y-6">
-              <div className="w-24 h-24 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-3xl flex items-center justify-center mx-auto border border-white/10 shadow-inner group-hover:scale-110 transition-transform duration-500">
-                <Upload className="w-12 h-12 text-primary-400 animate-float" />
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-3xl flex items-center justify-center mx-auto border border-white/10 shadow-inner group-hover:scale-110 transition-transform duration-500">
+                <Upload className="w-10 h-10 sm:w-12 sm:h-12 text-primary-400 animate-float" />
               </div>
               <div className="space-y-2">
-                <h2 className="text-2xl font-black text-white tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                   No Resumes Found
                 </h2>
-                <p className="text-neutral-400 font-medium max-w-xs mx-auto">
+                <p className="text-sm sm:text-base text-neutral-400 font-medium max-w-xs mx-auto">
                   Upload your first resume to get started with AI-powered skill analysis.
                 </p>
               </div>
               <button
                 onClick={() => navigate('/upload')}
-                className="btn-gradient px-10 py-4 text-base"
+                className="btn-gradient w-full sm:w-auto px-8 sm:px-10 py-4 text-sm sm:text-base"
               >
                 Upload Your First Resume
               </button>
@@ -123,12 +123,12 @@ const resumePage = ()=> {
 
         {/* Resumes Grid */}
         {!loading && resume.length > 0 && (
-          <div className="space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-8 sm:space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
               {resume.map((item) => (
                 <div
                   key={item._id}
-                  className="card-hover p-6 border-white/5 relative overflow-hidden group"
+                  className="card-hover p-5 sm:p-6 border-white/5 relative overflow-hidden group"
                 >
                   {/* Backdrop Gradient */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary-600/5 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-primary-600/10 transition-all duration-500" />
@@ -139,9 +139,9 @@ const resumePage = ()=> {
                   </div>
 
                   {/* Resume Info */}
-                  <div className="relative z-10 space-y-4 mb-8">
+                  <div className="relative z-10 space-y-4 mb-6 sm:mb-8">
                     <div className="space-y-1">
-                      <h3 className="text-xl font-bold text-white truncate group-hover:text-primary-300 transition-colors">
+                      <h3 className="text-lg sm:text-xl font-bold text-white truncate group-hover:text-primary-300 transition-colors">
                         {item.originalFileName}
                       </h3>
                       <div className="flex items-center gap-2 text-xs font-bold text-neutral-500 uppercase tracking-widest">
@@ -154,14 +154,14 @@ const resumePage = ()=> {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between py-3 border-y border-white/5">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between py-3 border-y border-white/5">
                       <div className="flex flex-col gap-0.5">
                         <span className="text-[10px] font-black text-neutral-600 uppercase tracking-[0.2em]">Size</span>
                         <span className="text-sm font-bold text-neutral-300">
                           {(Number(item.fileSize) / 1024 / 1024).toFixed(2)} MB
                         </span>
                       </div>
-                      <div className="flex flex-col items-end gap-0.5">
+                      <div className="flex flex-col gap-0.5 sm:items-end">
                         <span className="text-[10px] font-black text-neutral-600 uppercase tracking-[0.2em]">Status</span>
                         <div className="flex items-center gap-2">
                            {item.processingStatus !== 'completed' && (
@@ -206,7 +206,7 @@ const resumePage = ()=> {
 
             {/* Pagination */}
             {totalPage > 1 && (
-              <div className="flex items-center justify-center gap-6 py-6 border-t border-white/5">
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 py-6 border-t border-white/5">
                 <button
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
@@ -215,7 +215,7 @@ const resumePage = ()=> {
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 order-first w-full justify-center sm:order-none sm:w-auto">
                    <span className="text-sm font-black text-white">Page {page}</span>
                    <span className="text-sm font-bold text-neutral-600 uppercase tracking-widest">of {totalPage}</span>
                 </div>
@@ -234,20 +234,20 @@ const resumePage = ()=> {
 
         {/* Delete Confirmation Modal */}
         {deleteConfirm && (
-          <div className="fixed inset-0 bg-neutral-950/80 backdrop-blur-md flex items-center justify-center z-[100] p-6 animate-fade-in">
-            <div className="card-glass max-w-md w-full p-8 border-danger-500/20 animate-scale-in">
-              <div className="w-16 h-16 bg-danger-500/10 rounded-2xl flex items-center justify-center mb-6 mx-auto border border-danger-500/20">
+          <div className="fixed inset-0 bg-neutral-950/80 backdrop-blur-md flex items-center justify-center z-[100] p-4 sm:p-6 animate-fade-in">
+            <div className="card-glass max-w-md w-full p-6 sm:p-8 border-danger-500/20 animate-scale-in">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-danger-500/10 rounded-2xl flex items-center justify-center mb-6 mx-auto border border-danger-500/20">
                 <Trash2 className="w-8 h-8 text-danger-400" />
               </div>
               <div className="text-center space-y-2 mb-8">
-                <h3 className="text-2xl font-black text-white tracking-tight uppercase">
+                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight uppercase">
                   Delete Resume?
                 </h3>
-                <p className="text-neutral-400 font-medium">
+                <p className="text-sm sm:text-base text-neutral-400 font-medium">
                   This action is permanent for the resume record and may make linked analysis history unusable.
                 </p>
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                   onClick={() => setDeleteConfirm(null)}
                   className="flex-1 py-3.5 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl transition-all uppercase tracking-widest text-xs"

@@ -108,7 +108,7 @@ return (
                 <Sparkles className="h-4 w-4" />
                 Role Blueprint
               </p>
-              <h1 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl">
+              <h1 className="mt-4 break-words text-3xl font-bold tracking-tight md:text-5xl">
                 {loading ? 'Loading role...' : jobRole?.title || 'Job role detail'}
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 md:text-base">
@@ -133,14 +133,14 @@ return (
               <button
                 type="button"
                 onClick={() => navigate(`/analysis/create?jobRoleId=${id}`)}
-                className="mt-6 inline-flex items-center gap-2 rounded-2xl border border-primary-300 bg-primary-500/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-500/25"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-primary-300 bg-primary-500/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-500/25 sm:w-auto"
               >
                 Analyze this role
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 xl:w-[420px]">
+            <div className="grid grid-cols-2 gap-3 xl:w-[420px]">
               <HeroStat label="Views" value={jobRole?.views || 0} />
               <HeroStat label="Growth" value={jobRole?.growthRate ? `${jobRole.growthRate}%` : 'N/A'} />
               <HeroStat label="Openings" value={jobRole?.jobOpenings || 'N/A'} />
@@ -237,12 +237,12 @@ return (
 }
 
 const Panel = ({ title, icon: Icon, children }) => (
-  <div className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-soft dark:border-neutral-700 dark:bg-neutral-800">
+  <div className="rounded-3xl border border-neutral-200 bg-white p-4 shadow-soft dark:border-neutral-700 dark:bg-neutral-800 sm:p-6">
     <div className="mb-5 flex items-center gap-3">
       <div className="rounded-2xl bg-primary-50 p-3 dark:bg-primary-900/20">
         <Icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
       </div>
-      <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">{title}</h2>
+      <h2 className="break-words text-lg font-semibold text-neutral-900 dark:text-white sm:text-xl">{title}</h2>
     </div>
     {children}
   </div>
@@ -269,8 +269,8 @@ const SkillBucket = ({ title, items, tone }) => (
       <div className="mt-3 space-y-3">
         {items.map((item, index) => (
           <div key={`${item?.title || item?.skill || 'skill'}-${index}`} className={`rounded-2xl border bg-neutral-50 p-4 dark:bg-neutral-900/60 ${tone}`}>
-            <div className="flex items-start justify-between gap-4">
-              <div>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+              <div className="min-w-0">
                 <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                   {item?.title || item?.skill || 'Skill'}
                 </p>
@@ -278,7 +278,7 @@ const SkillBucket = ({ title, items, tone }) => (
                   {item?.description || 'No description provided.'}
                 </p>
               </div>
-              <span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold text-neutral-700 shadow-sm dark:bg-neutral-800 dark:text-neutral-200">
+              <span className="shrink-0 self-start rounded-full bg-white px-3 py-1 text-xs font-semibold text-neutral-700 shadow-sm dark:bg-neutral-800 dark:text-neutral-200">
                 Priority {item?.importance || 0}
               </span>
             </div>
@@ -292,9 +292,9 @@ const SkillBucket = ({ title, items, tone }) => (
 );
 
 const InfoRow = ({ label, value }) => (
-  <div className="flex items-center justify-between gap-4 rounded-2xl bg-neutral-50 px-4 py-3 dark:bg-neutral-900/60">
+  <div className="flex flex-col gap-1 rounded-2xl bg-neutral-50 px-4 py-3 dark:bg-neutral-900/60 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
     <span className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">{label}</span>
-    <span className="text-right font-medium text-neutral-900 dark:text-white">{value}</span>
+    <span className="break-words text-left font-medium text-neutral-900 dark:text-white sm:text-right">{value}</span>
   </div>
 );
 

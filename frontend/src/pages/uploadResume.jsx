@@ -132,18 +132,18 @@ const Uploadresume = () => {
 
   return (
     <DashboardLayout>
-      <div className="mx-auto flex h-full w-full max-w-[1500px] flex-col justify-center px-5 py-4">
+      <div className="mx-auto flex h-full w-full max-w-[1500px] flex-col justify-center px-1 py-2 sm:px-5 sm:py-4">
         <div className="w-full space-y-5 animate-fade-in text-center">
           <div>
-            <h1 className="text-4xl font-black text-white mb-2 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 tracking-tight">
               Upload <span className="text-gradient">Resume</span>
             </h1>
-            <p className="text-neutral-400 text-sm font-medium max-w-xl mx-auto uppercase tracking-widest opacity-80">
+            <p className="text-neutral-400 text-[11px] sm:text-sm font-medium max-w-xl mx-auto uppercase tracking-[0.25em] sm:tracking-widest opacity-80">
               Transform your resume into a career roadmap
             </p>
           </div>
 
-          <div className="card-glass relative mx-auto w-full max-w-[1100px] overflow-hidden border-white/5 p-8 group">
+          <div className="card-glass relative mx-auto w-full max-w-[1100px] overflow-hidden border-white/5 p-4 sm:p-8 group">
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary-600/10 rounded-full blur-3xl group-hover:bg-primary-600/20 transition-all duration-1000" />
             
             {!uploadedResume ? (
@@ -153,7 +153,7 @@ const Uploadresume = () => {
                   onDragLeave={handleDrag}
                   onDragOver={handleDrag}
                   onDrop={handleDrop}
-                  className={`relative w-full min-h-[380px] border-2 border-dashed rounded-[40px] p-12 text-center transition-all duration-500 transform ${
+                  className={`relative w-full min-h-[320px] sm:min-h-[380px] border-2 border-dashed rounded-[28px] sm:rounded-[40px] p-5 sm:p-12 text-center transition-all duration-500 transform ${
                     dragActive
                       ? 'border-primary-500 bg-primary-500/10 scale-[1.01] shadow-glow-sm'
                       : selectedFile
@@ -171,26 +171,26 @@ const Uploadresume = () => {
                   />
 
                   {!selectedFile ? (
-                    <div className="flex min-h-[280px] w-full flex-col items-center justify-center gap-14 py-6 md:flex-row">
-                      <div className="w-28 h-28 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-[32px] flex items-center justify-center shadow-inner border border-white/5 group-hover:scale-110 transition-transform duration-500">
-                        <Upload className="w-12 h-12 text-primary-400 group-hover:text-primary-300 animate-float" />
+                    <div className="flex min-h-[240px] sm:min-h-[280px] w-full flex-col items-center justify-center gap-8 sm:gap-14 py-4 sm:py-6 md:flex-row">
+                      <div className="w-20 h-20 sm:w-28 sm:h-28 bg-gradient-to-br from-primary-500/20 to-accent-500/20 rounded-[28px] sm:rounded-[32px] flex items-center justify-center shadow-inner border border-white/5 group-hover:scale-110 transition-transform duration-500">
+                        <Upload className="w-9 h-9 sm:w-12 sm:h-12 text-primary-400 group-hover:text-primary-300 animate-float" />
                       </div>
                       
-                      <div className="text-left space-y-4">
+                      <div className="w-full max-w-md text-center md:text-left space-y-4">
                         <div>
-                          <p className="text-4xl font-black text-white tracking-tight leading-none mb-3">
+                          <p className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-none mb-3">
                             Drag & Drop
                           </p>
-                          <p className="text-neutral-500 text-xs font-black uppercase tracking-[0.35em]">
+                          <p className="text-neutral-500 text-[10px] sm:text-xs font-black uppercase tracking-[0.25em] sm:tracking-[0.35em]">
                             Supports PDF, DOCX (Max 10MB)
                           </p>
                         </div>
 
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col items-center gap-4 sm:gap-6 md:items-start">
                           <button
                             onClick={() => fileInputRef.current?.click()}
                             disabled={uploading}
-                            className="px-9 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-black uppercase text-xs tracking-widest rounded-2xl shadow-glow-sm hover:scale-105 active:scale-95 transition-all"
+                            className="w-full sm:w-auto px-6 sm:px-9 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-black uppercase text-[11px] sm:text-xs tracking-widest rounded-2xl shadow-glow-sm hover:scale-105 active:scale-95 transition-all"
                           >
                             Browse Local Files
                           </button>
@@ -203,13 +203,13 @@ const Uploadresume = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="flex min-h-[280px] w-full flex-col items-center justify-center py-2 space-y-6 animate-scale-in">
-                      <div className="w-20 h-20 bg-success-500/20 rounded-[28px] flex items-center justify-center mx-auto border border-success-500/20 shadow-glow-sm">
-                        <FileText className="w-10 h-10 text-success-400" />
+                    <div className="flex min-h-[240px] sm:min-h-[280px] w-full flex-col items-center justify-center py-2 space-y-6 animate-scale-in">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-success-500/20 rounded-[24px] sm:rounded-[28px] flex items-center justify-center mx-auto border border-success-500/20 shadow-glow-sm">
+                        <FileText className="w-8 h-8 sm:w-10 sm:h-10 text-success-400" />
                       </div>
                       
                       <div className="space-y-1">
-                        <p className="text-2xl font-black text-white truncate max-w-md mx-auto">
+                        <p className="text-xl sm:text-2xl font-black text-white truncate max-w-md mx-auto">
                           {selectedFile.name}
                         </p>
                         <p className="text-neutral-500 text-[10px] font-black uppercase tracking-widest">
@@ -231,7 +231,7 @@ const Uploadresume = () => {
 
                 {uploading && (
                   <div className="space-y-4 py-2 animate-slide-up text-left max-w-3xl mx-auto">
-                    <div className="flex items-center justify-between px-2">
+                    <div className="flex flex-col gap-3 px-2 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3">
                          <Loader2 className="w-5 h-5 text-primary-400 animate-spin" />
                          <span className="text-white font-black text-[10px] uppercase tracking-widest">
@@ -254,7 +254,7 @@ const Uploadresume = () => {
                 )}
 
                 {error && (
-                  <div className="flex items-start gap-4 p-4 bg-danger-500/10 border border-danger-500/20 rounded-3xl text-left max-w-3xl mx-auto">
+                  <div className="flex items-start gap-3 sm:gap-4 p-4 bg-danger-500/10 border border-danger-500/20 rounded-3xl text-left max-w-3xl mx-auto">
                     <div className="p-2 bg-danger-500/20 rounded-xl">
                       <AlertCircle className="w-4 h-4 text-danger-400 flex-shrink-0" />
                     </div>
@@ -276,7 +276,7 @@ const Uploadresume = () => {
                   <button
                     onClick={uploadResume}
                     disabled={uploading}
-                    className="w-full max-w-3xl mx-auto py-5 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-black uppercase text-xs tracking-[0.3em] rounded-[24px] shadow-glow-sm hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-4"
+                    className="w-full max-w-3xl mx-auto py-4 sm:py-5 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-black uppercase text-[11px] sm:text-xs tracking-[0.22em] sm:tracking-[0.3em] rounded-[20px] sm:rounded-[24px] shadow-glow-sm hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-3 sm:gap-4"
                   >
                     <Plus className="w-5 h-5" />
                     Upload Resume
@@ -284,15 +284,15 @@ const Uploadresume = () => {
                 )}
               </div>
             ) : (
-              <div className="text-center py-8 animate-scale-in">
+              <div className="text-center py-6 sm:py-8 animate-scale-in">
                 <div className="relative inline-block mb-8">
                   <div className="absolute inset-0 bg-success-500/20 blur-3xl rounded-full" />
-                  <div className="relative w-20 h-20 bg-gradient-to-br from-success-500 to-emerald-600 rounded-[28px] flex items-center justify-center mx-auto shadow-glow-sm">
-                    <CheckCircle className="w-10 h-10 text-white" />
+                  <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-success-500 to-emerald-600 rounded-[24px] sm:rounded-[28px] flex items-center justify-center mx-auto shadow-glow-sm">
+                    <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                   </div>
                 </div>
                 
-                <h2 className="text-3xl font-black text-white mb-2 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight">
                   Status: <span className="text-success-400">Success</span>
                 </h2>
                 
@@ -301,27 +301,27 @@ const Uploadresume = () => {
                 </p>
 
                 <div className="mx-auto mb-10 grid w-full max-w-3xl gap-4 text-left md:grid-cols-2">
-                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                  <div className="rounded-[20px] sm:rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Uploaded File</p>
                     <p className="mt-2 truncate text-sm font-black text-white">
                       {uploadedResumeRecord?.originalFileName || selectedFile?.name || 'Resume uploaded'}
                     </p>
                   </div>
-                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                  <div className="rounded-[20px] sm:rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Word Count</p>
                     <p className="mt-2 text-sm font-black text-white">
                       {quickPreview?.wordcount ?? 'Not available'}
                     </p>
                   </div>
-                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                  <div className="rounded-[20px] sm:rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Detected Email</p>
                     <p className="mt-2 break-all text-sm font-black text-white">{previewEmail}</p>
                   </div>
-                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5">
+                  <div className="rounded-[20px] sm:rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Detected Phone</p>
                     <p className="mt-2 text-sm font-black text-white">{previewPhone}</p>
                   </div>
-                  <div className="rounded-[24px] border border-white/10 bg-white/5 p-5 md:col-span-2">
+                  <div className="rounded-[20px] sm:rounded-[24px] border border-white/10 bg-white/5 p-4 sm:p-5 md:col-span-2">
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-500">Detected URLs</p>
                     <p className="mt-2 break-all text-sm font-black text-white">
                       {previewUrls.length > 0 ? previewUrls.join(', ') : 'Not detected'}
@@ -329,16 +329,16 @@ const Uploadresume = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                   <button
                     onClick={() => navigate('/resumes')}
-                    className="w-full sm:w-auto px-12 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-black uppercase text-xs tracking-widest rounded-2xl shadow-glow-sm hover:scale-105 transition-all"
+                    className="w-full sm:w-auto px-8 sm:px-12 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-black uppercase text-[11px] sm:text-xs tracking-widest rounded-2xl shadow-glow-sm hover:scale-105 transition-all"
                   >
                     Enter Command Center
                   </button>
                   <button
                     onClick={handleClear}
-                    className="w-full sm:w-auto px-12 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black uppercase text-[10px] tracking-widest rounded-2xl transition-all"
+                    className="w-full sm:w-auto px-8 sm:px-12 py-4 bg-white/5 border border-white/10 hover:bg-white/10 text-white font-black uppercase text-[10px] tracking-widest rounded-2xl transition-all"
                   >
                     System Reset
                   </button>

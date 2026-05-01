@@ -353,7 +353,7 @@ const AnalysisPage = () => {
 
   return (
     <DashboardLayout>
-      <div className="relative pb-20">
+      <div className="relative pb-16 sm:pb-20">
         {/* Simple Loading Screen */}
         {showCreateOverlay && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md px-4">
@@ -366,10 +366,10 @@ const AnalysisPage = () => {
         {/* ════════════════════════════════════════
             ELITE HEADER
         ════════════════════════════════════════ */}
-        <header className="mb-10 px-8 py-10 rounded-3xl border border-white/10 bg-neutral-900 shadow-2xl relative overflow-hidden">
+        <header className="mb-8 sm:mb-10 px-5 sm:px-8 py-7 sm:py-10 rounded-3xl border border-white/10 bg-neutral-900 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/5 rounded-full blur-[100px] -mr-32 -mt-32" />
           
-          <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+          <div className="relative z-10 flex flex-col gap-6 sm:gap-8 md:flex-row md:items-center md:justify-between">
             <div className="space-y-3">
               <motion.div 
                 initial={{ opacity: 0, x: -10 }}
@@ -379,10 +379,10 @@ const AnalysisPage = () => {
                 <Sparkles className="w-3 h-3" />
                 <span>Career Intelligence Engine</span>
               </motion.div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
                 Skill Gap <span className="text-primary-400">Analysis</span>
               </h1>
-              <p className="text-neutral-400 max-w-xl text-base font-medium">
+              <p className="text-sm sm:text-base text-neutral-400 max-w-xl font-medium">
                 Compare your profile against industry standards to identify growth opportunities and career fit.
               </p>
             </div>
@@ -391,7 +391,7 @@ const AnalysisPage = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate('/resumes')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-white text-neutral-950 font-bold text-sm transition-all shadow-lg hover:bg-neutral-100"
+              className="inline-flex w-full md:w-auto items-center justify-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white text-neutral-950 font-bold text-sm transition-all shadow-lg hover:bg-neutral-100"
             >
               Manage Resumes <Rocket className="w-4 h-4" />
             </motion.button>
@@ -401,10 +401,10 @@ const AnalysisPage = () => {
         {/* ════════════════════════════════════════
             CONTROL INTERFACE
         ════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
           <div className="lg:col-span-8 space-y-8">
             {/* Mode Selector */}
-            <div className="flex gap-2 p-1.5 rounded-2xl bg-neutral-900/50 border border-white/5 w-fit backdrop-blur-xl">
+            <div className="flex w-full sm:w-fit gap-2 p-1.5 rounded-2xl bg-neutral-900/50 border border-white/5 backdrop-blur-xl">
               {[
                 { id: 'create', label: 'Analysis Tool', icon: Cpu },
                 { id: 'compare', label: 'Role Comparison', icon: GitCompareArrows },
@@ -412,7 +412,7 @@ const AnalysisPage = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2.5 px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 ${
+                  className={`flex flex-1 sm:flex-none items-center justify-center gap-2 px-3 sm:px-5 py-3 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 ${
                     activeTab === tab.id 
                     ? 'bg-primary-600 text-white shadow-lg' 
                     : 'text-neutral-500 hover:text-neutral-300'
@@ -428,9 +428,9 @@ const AnalysisPage = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="rounded-[2.5rem] border border-white/10 bg-neutral-900/40 backdrop-blur-3xl p-8 md:p-12 shadow-2xl relative"
+              className="rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 bg-neutral-900/40 backdrop-blur-3xl p-5 sm:p-8 md:p-12 shadow-2xl relative"
             >
-              <div className="absolute top-0 right-0 p-8">
+              <div className="absolute top-0 right-0 p-5 sm:p-8">
                 {activeTab === 'create' && <Zap className="w-6 h-6 text-primary-500/20" />}
               </div>
               {loadingBase ? (
@@ -442,8 +442,8 @@ const AnalysisPage = () => {
                   </div>
                 </div>
               ) : activeTab === 'create' ? (
-                <form onSubmit={handleCreateAnalysis} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <form onSubmit={handleCreateAnalysis} className="space-y-6 sm:space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                     <Field label="Select Resume">
                       <select
                         value={selectedResumeId}
@@ -483,7 +483,7 @@ const AnalysisPage = () => {
                         </div>
                         <div className="rounded-2xl border border-white/10 bg-white/5 p-2">
                           {selectedJobRole ? (
-                            <div className="mb-2 flex items-center justify-between rounded-2xl border border-primary-500/20 bg-primary-500/10 px-4 py-3">
+                            <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-2xl border border-primary-500/20 bg-primary-500/10 px-4 py-3">
                               <div className="min-w-0">
                                 <p className="truncate text-sm font-bold text-white">{selectedJobRole.title}</p>
                                 <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-primary-300">
@@ -551,9 +551,9 @@ const AnalysisPage = () => {
                     </Field>
                   </div>
 
-                  <div className="p-8 rounded-3xl bg-white/5 border border-white/5 space-y-6">
+                  <div className="p-5 sm:p-8 rounded-3xl bg-white/5 border border-white/5 space-y-6">
                     <h3 className="text-xs font-bold text-primary-400 uppercase tracking-widest">Analysis Preferences</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                       <Field label="Hours per Week">
                         <input type="number" min="1" max="168" value={hoursPerWeek} onChange={(e) => setHoursPerWeek(e.target.value)} className="w-full h-12 px-4 rounded-xl border border-white/10 bg-neutral-950 text-white font-bold text-sm focus:ring-2 focus:ring-primary-500 outline-none" />
                       </Field>
@@ -570,13 +570,13 @@ const AnalysisPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-6 pt-2">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 pt-2">
                     <motion.button 
                       type="submit" 
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       disabled={creating || isAiLimitReached} 
-                      className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-primary-600 hover:bg-primary-500 text-white font-bold text-base shadow-xl disabled:opacity-50 transition-all flex items-center justify-center gap-3"
+                      className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 rounded-2xl bg-primary-600 hover:bg-primary-500 text-white font-bold text-sm sm:text-base shadow-xl disabled:opacity-50 transition-all flex items-center justify-center gap-3"
                     >
                       {creating ? <Loader2 className="w-5 h-5 animate-spin" /> : <ShieldCheck className="w-5 h-5" />}
                       {creating ? 'Analyzing Profile...' : `Start Analysis`}
@@ -600,7 +600,7 @@ const AnalysisPage = () => {
                   ) : null}
                 </form>
               ) : (
-                <form onSubmit={handleCompareRoles} className="space-y-8">
+                <form onSubmit={handleCompareRoles} className="space-y-6 sm:space-y-8">
                   <Field label="Pick Resume for Comparison">
                     <select
                       value={selectedResumeId}
@@ -624,7 +624,7 @@ const AnalysisPage = () => {
                       className="w-full h-14 px-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 text-neutral-900 dark:text-white font-medium"
                     />
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1 sm:pr-2 custom-scrollbar">
                       {filteredCompareRoles.map((role) => {
                         const isSelected = compareRoleIds.includes(role._id);
                         return (
@@ -654,7 +654,7 @@ const AnalysisPage = () => {
                   <button 
                     type="submit" 
                     disabled={comparing || isAiLimitReached} 
-                    className="w-full sm:w-auto px-10 py-5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg shadow-lg flex items-center justify-center gap-3 transition-all active:scale-95"
+                    className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-base sm:text-lg shadow-lg flex items-center justify-center gap-3 transition-all active:scale-95"
                   >
                     {comparing ? <Loader2 className="w-6 h-6 animate-spin" /> : <GitCompareArrows className="w-6 h-6" />}
                     {comparing ? 'Comparing...' : 'Compare Selected Roles'}
@@ -668,23 +668,23 @@ const AnalysisPage = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="space-y-10"
+                className="space-y-8 sm:space-y-10"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div className="w-2 h-10 bg-primary-600 rounded-full" />
                   <div>
-                    <h2 className="text-3xl font-bold text-white tracking-tight">Analysis Results</h2>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Analysis Results</h2>
                     <p className="text-xs font-bold text-neutral-500 uppercase tracking-widest mt-1">Review your match scores and recommendations</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                   <StatCard label="Overall Match" value={`${analysisOverview.matchScore}%`} tone={scoreTone(analysisOverview.matchScore)} icon={Target} />
                   <StatCard label="Readiness" value={analysisOverview.readinessLevel} icon={Rocket} />
                   <StatCard label="Review Period" value={`${analysisOverview?.estimatedTimeToReady?.weeks} Weeks`} icon={Clock3} />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-8">
                     <BreakdownBlock title="Skill Categories" breakdown={analysisOverview.matchBreakDown} />
                     <ListBlock
@@ -709,13 +709,13 @@ const AnalysisPage = () => {
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="p-16 md:p-24 rounded-[2.5rem] border border-white/5 bg-neutral-900/20 text-center space-y-6 backdrop-blur-sm"
+                className="p-8 sm:p-12 md:p-24 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 bg-neutral-900/20 text-center space-y-6 backdrop-blur-sm"
               >
-                <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mx-auto text-neutral-700 border border-white/5 transition-transform duration-500 hover:scale-105">
-                  <Brain className="w-10 h-10" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-white/5 flex items-center justify-center mx-auto text-neutral-700 border border-white/5 transition-transform duration-500 hover:scale-105">
+                  <Brain className="w-8 h-8 sm:w-10 sm:h-10" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-white tracking-tight">Ready for Analysis</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Ready for Analysis</h3>
                   <p className="text-neutral-500 max-w-sm mx-auto font-medium">
                     Configure your resume and target role above to generate a professional skill gap analysis.
                   </p>
@@ -725,9 +725,9 @@ const AnalysisPage = () => {
           </div>
 
         {/* Side Panel */}
-        <aside className="lg:col-span-4 space-y-8">
+        <aside className="lg:col-span-4 space-y-6 sm:space-y-8">
           {/* ATS Intelligence Card */}
-          <div className="rounded-3xl border border-white/10 bg-neutral-900 p-8 shadow-2xl text-white relative overflow-hidden group">
+          <div className="rounded-3xl border border-white/10 bg-neutral-900 p-5 sm:p-8 shadow-2xl text-white relative overflow-hidden group">
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary-500/10 transition-colors duration-700" />
             <h3 className="text-xs font-bold mb-6 flex items-center gap-3 uppercase tracking-widest text-primary-400">
               <div className="w-1.5 h-6 bg-primary-500 rounded-full" />
@@ -748,7 +748,7 @@ const AnalysisPage = () => {
           </div>
 
             {/* Comparison Intelligence */}
-            <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+            <div className="rounded-3xl border border-white/10 bg-neutral-900/60 p-5 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
               <h3 className="text-xs font-bold text-white mb-6 flex items-center gap-3 uppercase tracking-widest">
                 <div className="w-1.5 h-6 bg-blue-500 rounded-full" />
                 Comparison History
@@ -784,7 +784,7 @@ const AnalysisPage = () => {
                     </motion.div>
                   ))}
                   
-                  <div className="mt-8 p-6 rounded-2xl bg-primary-500/10 border border-primary-500/20 space-y-2">
+                  <div className="mt-6 sm:mt-8 p-5 sm:p-6 rounded-2xl bg-primary-500/10 border border-primary-500/20 space-y-2">
                     <div className="flex items-center gap-2 text-[10px] font-bold text-primary-400 uppercase tracking-widest">
                       <Trophy className="w-3 h-3" /> Recommended Role
                     </div>
@@ -794,7 +794,7 @@ const AnalysisPage = () => {
               )}
             </div>
 
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/5 relative overflow-hidden group">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">AI Credits</span>
                 <span className="text-xs font-bold text-white">{aiUsage?.usesRemaining ?? 0} REMAINING</span>
@@ -827,13 +827,13 @@ const Field = ({ label, children }) => (
 );
 
 const StatCard = ({ label, value, tone, icon: Icon }) => (
-  <div className="rounded-3xl border border-white/5 bg-neutral-900/40 p-6 md:p-8 shadow-2xl backdrop-blur-xl group hover:border-primary-500/30 transition-all duration-300">
-    <div className="flex justify-between items-start">
+  <div className="rounded-3xl border border-white/5 bg-neutral-900/40 p-5 sm:p-6 md:p-8 shadow-2xl backdrop-blur-xl group hover:border-primary-500/30 transition-all duration-300">
+    <div className="flex justify-between items-start gap-4">
       <div className="space-y-2">
         <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{label}</p>
-        <p className={`text-3xl md:text-4xl font-bold tracking-tight capitalize ${tone || 'text-white'}`}>{value}</p>
+        <p className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight capitalize break-words ${tone || 'text-white'}`}>{value}</p>
       </div>
-      <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-neutral-400 group-hover:text-primary-400 transition-colors">
+      <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-neutral-400 group-hover:text-primary-400 transition-colors shrink-0">
         <Icon className="w-5 h-5 md:w-6 md:h-6" />
       </div>
     </div>
@@ -848,12 +848,12 @@ const BreakdownBlock = ({ title, breakdown }) => {
   ];
 
   return (
-    <div className="rounded-3xl border border-white/5 bg-neutral-900/60 p-8 shadow-2xl backdrop-blur-xl">
-      <h3 className="text-xs font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-widest">
+    <div className="rounded-3xl border border-white/5 bg-neutral-900/60 p-5 sm:p-8 shadow-2xl backdrop-blur-xl">
+      <h3 className="text-xs font-bold text-white mb-6 sm:mb-8 flex items-center gap-3 uppercase tracking-widest">
         <div className="w-1.5 h-6 bg-primary-600 rounded-full" />
         {title}
       </h3>
-      <div className="space-y-6">
+      <div className="space-y-5 sm:space-y-6">
         {rows.map((row) => {
           const item = breakdown?.[row.key] || { matched: 0, total: 0, percentage: 0 };
           return (
@@ -884,12 +884,12 @@ const GapBlock = ({ gaps }) => {
   const nice = gaps?.niceToHave?.length || 0;
 
   return (
-    <div className="rounded-3xl border border-white/5 bg-neutral-900/60 p-8 shadow-2xl backdrop-blur-xl">
-      <h3 className="text-xs font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-widest">
+    <div className="rounded-3xl border border-white/5 bg-neutral-900/60 p-5 sm:p-8 shadow-2xl backdrop-blur-xl">
+      <h3 className="text-xs font-bold text-white mb-6 sm:mb-8 flex items-center gap-3 uppercase tracking-widest">
         <div className="w-1.5 h-6 bg-red-600 rounded-full" />
         Identified Gaps
       </h3>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {[
           { l: 'Critical', v: critical, c: 'text-red-400', bg: 'bg-red-500/5 border-red-500/10' },
           { l: 'Moderate', v: important, c: 'text-amber-400', bg: 'bg-amber-500/5 border-amber-500/10' },
@@ -906,13 +906,13 @@ const GapBlock = ({ gaps }) => {
 };
 
 const AnalysisGenerationCard = ({ activeStage = 0 }) => (
-  <div className="rounded-[2.5rem] bg-neutral-900 border border-white/10 p-10 shadow-3xl text-center relative overflow-hidden">
+  <div className="rounded-[2rem] sm:rounded-[2.5rem] bg-neutral-900 border border-white/10 p-6 sm:p-10 shadow-3xl text-center relative overflow-hidden">
     <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-30" />
-    <div className="w-16 h-16 rounded-2xl bg-primary-500/10 flex items-center justify-center mx-auto mb-6 border border-primary-500/20">
+    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary-500/10 flex items-center justify-center mx-auto mb-6 border border-primary-500/20">
       <Sparkles className="w-8 h-8 text-primary-500 animate-pulse" />
     </div>
-    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">Analyzing Profile</h3>
-    <p className="text-neutral-500 mb-10 max-w-xs mx-auto font-medium text-sm">We are reviewing your background and skills.</p>
+    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight">Analyzing Profile</h3>
+    <p className="text-neutral-500 mb-8 sm:mb-10 max-w-xs mx-auto font-medium text-sm">We are reviewing your background and skills.</p>
 
     <div className="space-y-3 max-w-sm mx-auto">
       {createAnalysisStages.map((stage, index) => {
@@ -924,7 +924,7 @@ const AnalysisGenerationCard = ({ activeStage = 0 }) => (
           <motion.div
             key={index}
             animate={{ opacity: isActive ? 1 : 0.5, scale: isActive ? 1.02 : 1 }}
-            className={`flex items-center gap-4 p-4 rounded-xl border transition-all ${
+            className={`flex items-center gap-3 sm:gap-4 p-4 rounded-xl border transition-all ${
               isActive
               ? 'bg-primary-500/5 border-primary-500/30'
               : 'border-transparent'
@@ -947,9 +947,9 @@ const AnalysisGenerationCard = ({ activeStage = 0 }) => (
 );
 
 const ListBlock = ({ title, icon: Icon, items, theme }) => (
-  <div className={`rounded-3xl border border-white/5 bg-neutral-900/60 p-8 shadow-2xl backdrop-blur-xl h-full relative overflow-hidden`}>
+  <div className={`rounded-3xl border border-white/5 bg-neutral-900/60 p-5 sm:p-8 shadow-2xl backdrop-blur-xl h-full relative overflow-hidden`}>
     {theme && <div className={`absolute -top-12 -right-12 w-32 h-32 ${theme.bg} rounded-full blur-[60px] opacity-10`} />}
-    <h3 className="text-xs font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-widest">
+    <h3 className="text-xs font-bold text-white mb-6 sm:mb-8 flex items-center gap-3 uppercase tracking-widest">
       <div className={`w-1.5 h-6 ${theme?.primary || 'bg-primary-600'} rounded-full`} />
       {title}
     </h3>

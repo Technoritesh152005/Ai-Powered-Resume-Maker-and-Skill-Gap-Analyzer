@@ -21,19 +21,19 @@ const RoadmapPreview = ({ roadmap, loading = false }) => {
   }
 
   return (
-    <div className="bg-white/4 backdrop-blur-xl rounded-[32px] p-7 border border-white/8 shadow-2xl relative group overflow-hidden flex flex-col h-full">
+    <div className="bg-white/4 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 border border-white/8 shadow-2xl relative group overflow-hidden flex flex-col h-full">
       
       {/* Background Flare */}
       <div className="absolute top-0 right-0 h-48 w-48 bg-primary-500/5 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
 
-      <div className="flex items-center justify-between mb-8 relative z-10">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-8 relative z-10">
         <h2 className="text-sm font-black text-white uppercase tracking-widest flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-accent-600/20 border border-accent-500/30 flex items-center justify-center">
             <Map className="w-4 h-4 text-accent-400" />
           </div>
           Strategic Roadmap
         </h2>
-        <button className="text-[10px] font-black text-primary-400 uppercase tracking-widest hover:text-primary-300 transition-all flex items-center gap-1 group/btn">
+        <button className="text-[10px] font-black text-primary-400 uppercase tracking-widest hover:text-primary-300 transition-all flex items-center gap-1 group/btn self-start sm:self-auto">
           Full Access 
           <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
         </button>
@@ -41,8 +41,8 @@ const RoadmapPreview = ({ roadmap, loading = false }) => {
 
       {/* Progress Section */}
       <div className="mb-8 relative z-10">
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-black text-neutral-300 uppercase tracking-tight">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-3">
+          <span className="text-xs font-black text-neutral-300 uppercase tracking-tight break-words">
             {roadmap.title}
           </span>
           <span className="text-sm font-black text-primary-400 tracking-tighter">
@@ -57,8 +57,8 @@ const RoadmapPreview = ({ roadmap, loading = false }) => {
           />
         </div>
 
-        <div className="flex items-center justify-between mt-3 text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
-          <span className="flex items-center gap-1.5"><ShieldCheck className="w-3 h-3 text-success-500" /> {roadmap.completedItems} Nodes Hit</span>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mt-3 text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+          <span className="flex items-center gap-1.5"><ShieldCheck className="w-3 h-3 text-success-500 shrink-0" /> {roadmap.completedItems} Nodes Hit</span>
           <span>{roadmap.totalItems} Total</span>
         </div>
       </div>
@@ -77,7 +77,7 @@ const RoadmapPreview = ({ roadmap, loading = false }) => {
               {roadmap.upcomingItems.slice(0, 2).map((item, index) => (
                 <div
                   key={item.id || index}
-                  className="flex items-start gap-4 p-4 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/8 transition-all hover:scale-[1.02] duration-300"
+                  className="flex items-start gap-3 sm:gap-4 p-4 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/8 transition-all hover:scale-[1.02] duration-300"
                 >
                   <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
                     <span className="text-xs font-black text-amber-500">

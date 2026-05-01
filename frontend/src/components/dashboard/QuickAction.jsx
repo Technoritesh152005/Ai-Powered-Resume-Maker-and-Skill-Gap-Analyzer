@@ -50,13 +50,13 @@ const QuickActions = ({ aiUsage }) => {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
       {actions.map((action, index) => (
         <button
           key={index}
           onClick={() => navigate(action.path)}
           disabled={action.isAiAction && isAiLimitReached}
-          className={`group relative overflow-hidden bg-white/4 backdrop-blur-xl border border-white/8 rounded-[32px] p-6 text-left transition-all duration-500 hover:-translate-y-2 hover:bg-white/6 ${action.glow} ${action.border} shadow-2xl disabled:cursor-not-allowed disabled:opacity-55 disabled:hover:-translate-y-0 disabled:hover:bg-white/4`}
+          className={`group relative overflow-hidden bg-white/4 backdrop-blur-xl border border-white/8 rounded-[28px] sm:rounded-[32px] p-5 sm:p-6 text-left transition-all duration-500 hover:-translate-y-2 hover:bg-white/6 ${action.glow} ${action.border} shadow-2xl disabled:cursor-not-allowed disabled:opacity-55 disabled:hover:-translate-y-0 disabled:hover:bg-white/4`}
         >
           {/* Animated accent circle */}
           <div className={`absolute -top-12 -right-12 w-24 h-24 rounded-full bg-gradient-to-br ${action.color} opacity-0 group-hover:opacity-20 transition-all duration-700 blur-2xl`} />
@@ -68,11 +68,11 @@ const QuickActions = ({ aiUsage }) => {
             </div>
             
             <div className="mt-auto">
-              <h3 className="text-xl font-black text-white mb-1.5 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
+              <h3 className="text-lg sm:text-xl font-black text-white mb-1.5 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
                 {action.title}
               </h3>
               
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-bold text-neutral-500 tracking-tight group-hover:text-neutral-400 transition-colors duration-500">
                   {action.description}
                 </p>

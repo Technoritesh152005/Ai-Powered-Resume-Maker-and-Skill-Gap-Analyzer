@@ -381,12 +381,12 @@ const RoadmapDetailPage = () => {
                       const isCompleted = phaseProgress === 100;
 
                       return (
-                        <div key={`${phase?.title || 'phase'}-${phaseIndex}`} className="relative pl-10">
+                        <div key={`${phase?.title || 'phase'}-${phaseIndex}`} className="relative pl-0 sm:pl-10">
                           {phaseIndex !== roadmap.phases.length - 1 ? (
-                            <div className="absolute left-[1.15rem] top-12 h-[calc(100%+1.75rem)] w-px bg-gradient-to-b from-primary-500 via-cyan-400/50 to-neutral-200 dark:to-neutral-700" />
+                            <div className="absolute left-[1.15rem] top-12 hidden h-[calc(100%+1.75rem)] w-px bg-gradient-to-b from-primary-500 via-cyan-400/50 to-neutral-200 dark:to-neutral-700 sm:block" />
                           ) : null}
 
-                          <div className={`absolute left-0 top-1 flex h-9 w-9 items-center justify-center rounded-full border text-sm font-bold ${
+                          <div className={`relative mb-4 flex h-9 w-9 items-center justify-center rounded-full border text-sm font-bold sm:absolute sm:left-0 sm:top-1 sm:mb-0 ${
                             isCompleted
                               ? 'border-emerald-300 bg-emerald-500 text-white'
                               : isCurrent
@@ -414,7 +414,7 @@ const RoadmapDetailPage = () => {
                                   ) : null}
                                 </div>
 
-                                <h2 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                                <h2 className="mt-4 break-words text-xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-2xl">
                                   {phase?.title || 'Learning phase'}
                                 </h2>
                                 <p className="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
@@ -574,7 +574,7 @@ const RoadmapDetailPage = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <MetricCard label="Progress" value={`${roadmap?.progress?.overallPercentage || 0}%`} />
                     <MetricCard label="Milestones" value={summary.milestones} />
                     <MetricCard label="Completed" value={roadmap?.progress?.completedItems || 0} />
@@ -709,15 +709,15 @@ const RoadmapDetailPage = () => {
 };
 
 const Panel = ({ title, icon: Icon, children, action = null }) => (
-  <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-6 shadow-soft dark:border-neutral-700 dark:bg-neutral-800">
-    <div className="mb-5 flex items-center justify-between gap-3">
-      <div className="flex items-center gap-3">
+  <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-4 shadow-soft dark:border-neutral-700 dark:bg-neutral-800 sm:p-6">
+    <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex min-w-0 items-center gap-3">
         <div className="rounded-2xl bg-primary-50 p-3 dark:bg-primary-900/20">
           <Icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
         </div>
-        <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">{title}</h2>
+        <h2 className="break-words text-lg font-semibold text-neutral-900 dark:text-white sm:text-xl">{title}</h2>
       </div>
-      {action}
+      {action ? <div className="w-full sm:w-auto">{action}</div> : null}
     </div>
     {children}
   </div>
@@ -756,7 +756,7 @@ const SectionCard = ({ title, icon: Icon, children }) => (
 );
 
 const PhaseInlineMetric = ({ label, value }) => (
-  <div className="min-w-[112px] flex-1 rounded-2xl bg-neutral-50 px-3 py-3 dark:bg-neutral-900/60">
+  <div className="min-w-0 flex-1 rounded-2xl bg-neutral-50 px-3 py-3 dark:bg-neutral-900/60 sm:min-w-[112px]">
     <p className="text-[11px] uppercase tracking-wide text-neutral-500 dark:text-neutral-400">{label}</p>
     <p className="mt-1.5 text-sm font-semibold text-neutral-900 dark:text-white">{value}</p>
   </div>
@@ -783,9 +783,9 @@ const MetricCard = ({ label, value }) => (
 );
 
 const InfoRow = ({ label, value }) => (
-  <div className="flex items-center justify-between rounded-2xl bg-neutral-50 px-4 py-3 capitalize dark:bg-neutral-900/60">
+  <div className="flex flex-col gap-1 rounded-2xl bg-neutral-50 px-4 py-3 capitalize dark:bg-neutral-900/60 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
     <span className="text-neutral-500 dark:text-neutral-400">{label}</span>
-    <span className="font-medium text-neutral-900 dark:text-white">{String(value)}</span>
+    <span className="break-words font-medium text-neutral-900 dark:text-white sm:text-right">{String(value)}</span>
   </div>
 );
 
@@ -848,7 +848,7 @@ const LearningItemCard = ({ item, resourceMeta, isCompleted, isCompleting, onCom
                   <p className="text-base font-semibold leading-6 text-neutral-900 dark:text-white">
                     {resourceMeta.title}
                   </p>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  <p className="break-words text-xs text-neutral-500 dark:text-neutral-400">
                     {resourceMeta.provider}
                     {resourceMeta.platform ? ` | ${resourceMeta.platform}` : ''}
                   </p>
@@ -861,7 +861,7 @@ const LearningItemCard = ({ item, resourceMeta, isCompleted, isCompleting, onCom
                 href={resourceMeta.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-fit items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 dark:border-primary-900/40 dark:bg-primary-900/15 dark:text-primary-300"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-4 py-2 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 dark:border-primary-900/40 dark:bg-primary-900/15 dark:text-primary-300 sm:w-fit"
               >
                 Open resource
                 <ExternalLink className="h-4 w-4" />
@@ -936,7 +936,7 @@ const RoadmapProcessingState = ({ roadmap }) => {
     <section className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.2fr)_340px]">
       <Panel title="Roadmap Generation" icon={Map}>
         <div className="rounded-3xl border border-blue-100 bg-gradient-to-r from-blue-50 via-white to-teal-50 p-5 dark:border-blue-900/30 dark:from-blue-950/30 dark:via-neutral-900 dark:to-teal-950/20">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-neutral-900 dark:text-white">Worker activity</p>
               <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">Live backend job state for roadmap generation.</p>
@@ -964,7 +964,7 @@ const RoadmapProcessingState = ({ roadmap }) => {
 
             return (
               <div key={stage.key} className={`rounded-2xl border px-4 py-4 ${isActive ? 'border-blue-300 bg-blue-50 dark:border-blue-800 dark:bg-blue-900/20' : 'border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900/60'}`}>
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
                   <div className="flex items-center gap-3">
                     <div className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-semibold ${isDone ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' : isActive ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-neutral-200 text-neutral-600 dark:bg-neutral-700 dark:text-neutral-300'}`}>
                       {isDone ? <CheckCircle2 className="h-4 w-4" /> : index + 1}
@@ -1012,11 +1012,11 @@ const RoadmapFailedState = ({ roadmap, retrying, isAiLimitReached, onRetry }) =>
       <div className="rounded-3xl border border-red-200 bg-red-50 p-5 dark:border-red-900/40 dark:bg-red-900/15">
         <p className="text-lg font-semibold text-red-800 dark:text-red-200">The roadmap job did not complete.</p>
         <p className="mt-2 text-sm leading-6 text-red-700 dark:text-red-300">{getSafeRoadmapError(roadmap?.error)}</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <button type="button" onClick={onRetry} disabled={retrying || isAiLimitReached} className="inline-flex items-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60">
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <button type="button" onClick={onRetry} disabled={retrying || isAiLimitReached} className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto">
             {retrying ? 'Retrying...' : 'Retry Roadmap'}
           </button>
-          <button type="button" onClick={() => window.location.reload()} className="inline-flex items-center gap-2 rounded-2xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-50 dark:border-red-900/40 dark:bg-transparent dark:text-red-300">
+          <button type="button" onClick={() => window.location.reload()} className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-50 dark:border-red-900/40 dark:bg-transparent dark:text-red-300 sm:w-auto">
             Refresh Status
           </button>
         </div>

@@ -249,8 +249,8 @@ const latestCompletedAnalysis = useMemo(
 
 return (
   <DashboardLayout>
-    <div className="space-y-8">
-      <section className="relative overflow-hidden rounded-[2rem] border border-sky-200/70 bg-[linear-gradient(135deg,_#f8fcff_0%,_#eef7ff_28%,_#e9fff7_100%)] p-6 shadow-soft dark:border-neutral-700 dark:bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.18),_transparent_32%),linear-gradient(135deg,_#0f172a,_#111827_55%,_#0b3b2e)] md:p-8">
+    <div className="space-y-6 sm:space-y-8">
+      <section className="relative overflow-hidden rounded-[2rem] border border-sky-200/70 bg-[linear-gradient(135deg,_#f8fcff_0%,_#eef7ff_28%,_#e9fff7_100%)] p-5 sm:p-6 shadow-soft dark:border-neutral-700 dark:bg-[radial-gradient(circle_at_top_left,_rgba(14,165,233,0.18),_transparent_32%),linear-gradient(135deg,_#0f172a,_#111827_55%,_#0b3b2e)] md:p-8">
         <div className="absolute -left-20 top-0 h-56 w-56 rounded-full bg-sky-300/25 blur-3xl dark:bg-sky-500/20" />
         <div className="absolute right-0 top-8 h-52 w-52 rounded-full bg-emerald-300/25 blur-3xl dark:bg-emerald-500/10" />
         <div className="absolute bottom-0 right-8 h-40 w-40 rounded-full bg-white/70 blur-3xl dark:bg-white/5" />
@@ -262,7 +262,7 @@ return (
               Analysis command center
             </div>
 
-            <h1 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-5xl">
+            <h1 className="mt-4 max-w-3xl text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-5xl">
               Track every resume-to-role analysis from one sharper workspace.
             </h1>
 
@@ -305,7 +305,7 @@ return (
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] border border-white/70 bg-white/85 p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-none">
+          <div className="rounded-[1.75rem] border border-white/70 bg-white/85 p-4 sm:p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-white/10 dark:bg-white/5 dark:shadow-none">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-white/55">
@@ -353,7 +353,7 @@ return (
         <SummaryCard label="High-Fit Roles" value={summary.highFit} icon={ArrowRight} />
       </section>
 
-      <section className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-soft dark:border-neutral-700 dark:bg-neutral-800">
+      <section className="rounded-3xl border border-neutral-200 bg-white p-4 sm:p-5 shadow-soft dark:border-neutral-700 dark:bg-neutral-800">
         <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
           <div className="relative flex-1">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
@@ -367,7 +367,7 @@ return (
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <label className="inline-flex items-center gap-2 rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
+            <label className="inline-flex w-full sm:w-auto items-center gap-2 rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
               <Filter className="h-4 w-4" />
               <FilterDropdown
                 value={statusFilter}
@@ -376,7 +376,7 @@ return (
               />
             </label>
 
-            <label className="inline-flex items-center gap-2 rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
+            <label className="inline-flex w-full sm:w-auto items-center gap-2 rounded-2xl border border-neutral-200 px-4 py-3 text-sm text-neutral-600 dark:border-neutral-700 dark:text-neutral-300">
               <CalendarDays className="h-4 w-4" />
               <FilterDropdown
                 value={sortBy}
@@ -406,7 +406,7 @@ return (
                   navigate(`/analysis/${analysis._id}`);
                 }
               }}
-              className="group w-full rounded-3xl border border-neutral-200 bg-white p-6 text-left shadow-soft transition hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-700"
+              className="group w-full rounded-3xl border border-neutral-200 bg-white p-4 sm:p-6 text-left shadow-soft transition hover:-translate-y-0.5 hover:border-primary-300 hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-primary-700"
             >
               <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div className="min-w-0 flex-1">
@@ -422,7 +422,7 @@ return (
                     </span>
                   </div>
 
-                  <h2 className="mt-4 text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+                  <h2 className="mt-4 text-xl sm:text-2xl font-semibold tracking-tight text-neutral-900 dark:text-white">
                     {analysis?.jobRole?.title || 'Untitled analysis'}
                   </h2>
 
@@ -446,7 +446,7 @@ return (
                   </p>
                 </div>
 
-                <div className="grid min-w-full grid-cols-2 gap-3 lg:min-w-[320px]">
+                <div className="grid min-w-full grid-cols-1 sm:grid-cols-2 gap-3 lg:min-w-[320px]">
                   <MetricCard
                     label="Match Score"
                     value={analysis.status === 'completed' ? `${analysis.matchScore || 0}%` : 'Pending'}
@@ -467,8 +467,8 @@ return (
                 </div>
               </div>
 
-                <div className="mt-6 flex items-center justify-between border-t border-neutral-200 pt-4 text-sm dark:border-neutral-700">
-                  <div className="flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-col gap-4 border-t border-neutral-200 pt-4 text-sm dark:border-neutral-700 lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex flex-wrap gap-2">
                     {(analysis?.candidateStrength || []).slice(0, 3).map((item, index) => (
                     <span
                       key={`${item?.skill || 'strength'}-${index}`}
@@ -479,7 +479,7 @@ return (
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
                   {['completed', 'failed'].includes(analysis?.status) ? (
                     <button
                       type="button"
@@ -551,7 +551,7 @@ return (
 }
 
 const SummaryCard = ({ label, value, icon: Icon }) => (
-  <div className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-soft dark:border-neutral-700 dark:bg-neutral-800">
+  <div className="rounded-3xl border border-neutral-200 bg-white p-4 sm:p-5 shadow-soft dark:border-neutral-700 dark:bg-neutral-800">
     <div className="flex items-center justify-between">
       <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{label}</p>
       <div className="rounded-2xl bg-neutral-100 p-3 dark:bg-neutral-700">
@@ -634,7 +634,7 @@ const FilterDropdown = ({ value, onChange, options }) => {
 const MetricCard = ({ label, value, valueClass = 'text-neutral-900 dark:text-white' }) => (
   <div className="rounded-2xl bg-neutral-50 p-4 dark:bg-neutral-900/60">
     <p className="text-xs uppercase tracking-wide text-neutral-500 dark:text-neutral-400">{label}</p>
-    <p className={`mt-2 text-lg font-semibold ${valueClass}`}>{value}</p>
+    <p className={`mt-2 text-base sm:text-lg font-semibold break-words ${valueClass}`}>{value}</p>
   </div>
 );
 
